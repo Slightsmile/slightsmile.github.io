@@ -2,11 +2,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const typed = new Typed('#typed', {
         strings: [
-            'JavaScript Expert',
-            'React Specialist',
-            'Full Stack Developer',
-            'Clean Code Advocate',
-            'Performance Optimizer'
+            'Data Analyst',
+            'Software Developer',
+            'Machine Learning Enthusiast',
+            'Problem Solver',
+            'Tech Explorer'
         ],
 typeSpeed: 50,
         backSpeed: 30,
@@ -150,7 +150,7 @@ typeSpeed: 50,
             technologies: ['Deep Learning', 'Python', 'TensorFlow'],
             image: '/images/5.png',
             links: [
-                { label: 'Github', url: '#' }
+                { label: 'Github', url: 'https://github.com/Slightsmile/Gallblader-Cancer-Detection-DL' }
             ]
         },
         {
@@ -159,7 +159,7 @@ typeSpeed: 50,
             technologies: ['Python'],
             image: '/images/3.png',
             links: [
-                { label: 'Github', url: '#' }
+                { label: 'Github', url: 'https://github.com/Slightsmile/Library-MS-Project' }
             ]
         },
         {
@@ -168,7 +168,7 @@ typeSpeed: 50,
             technologies: ['Java'],
             image: '/images/1.png',
             links: [
-                { label: 'Github', url: '#' }
+                { label: 'Github', url: 'https://github.com/Slightsmile/Bus-MS-Project' }
             ]
         },
         {
@@ -177,7 +177,7 @@ typeSpeed: 50,
             technologies: ['Arduino', 'C'],
             image: '/images/8.png',
             links: [
-                { label: 'Github', url: '#' }
+                { label: 'Github', url: 'https://github.com/Slightsmile/Morse-Decoder-Arduino-Project' }
             ]
         },
         {
@@ -185,7 +185,7 @@ typeSpeed: 50,
             description: 'A modern, minimal, responsive website for DIU transport schedules.',
             technologies: ['HTML', 'CSS', 'JS'],
             image: '/images/14.png',
-            links: []
+            links: [{ label: 'Live', url: 'https://slightsmile.github.io/DIU-Transport/' }]
         },
         {
             title: 'University Network Simulator',
@@ -193,8 +193,7 @@ typeSpeed: 50,
             technologies: ['Cisco'],
             image: '/images/15.png',
             links: [
-                { label: 'Live', url: '#' },
-                { label: 'Github', url: '#' }
+                { label: 'Github', url: 'https://github.com/Slightsmile/University-Network-Simulator' }
             ]
         }
     ];
