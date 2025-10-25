@@ -201,17 +201,35 @@ typeSpeed: 50,
 
     projects.forEach(project => {
         const projectCard = document.createElement('div');
-        projectCard.className = 'project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md slide-up';
+    projectCard.className = 'project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md slide-up relative flex flex-col';
+    // Ensure all cards have the same minimum height for consistency
+    projectCard.style.minHeight = '420px';
+        // Technologies: two rows, items wrap if needed
         projectCard.innerHTML = `
             <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover">
-            <div class="p-6">
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">${project.title}</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">${project.description}</p>
-                <div class="flex flex-wrap gap-2">
-                    ${project.technologies.map(tech => 
-                        `<span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-sm rounded-full">${tech}</span>`
-                    ).join('')}
+            <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">${project.title}</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">${project.description}</p>
+                    <div class="flex flex-wrap gap-2 mb-2" style="flex-wrap: wrap; max-height: 48px; overflow: visible;">
+                        ${project.technologies.map(tech => 
+                            `<span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-sm rounded-full">${tech}</span>`
+                        ).join('')}
+                    </div>
                 </div>
+                ${project.links && project.links.length > 0 ? `
+                    <div class="flex gap-2 mt-4">
+                        ${project.links.map(link => {
+                            let icon = '';
+                            if (link.label.toLowerCase() === 'github') {
+                                icon = '<i data-feather="github"></i>';
+                            } else if (link.label.toLowerCase() === 'live') {
+                                icon = '<i data-feather="external-link"></i>';
+                            }
+                            return `<a href="${link.url}" target="_blank" class="flex items-center gap-1 px-2 py-1.5 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow hover:bg-indigo-800 transition-all duration-300 whitespace-nowrap" style="min-width:56px;">${icon}<span class='px-3 py-1'>${link.label}</span></a>`;
+                        }).join('')}
+                    </div>
+                ` : ''}
             </div>
         `;
         projectsContainer.appendChild(projectCard);
