@@ -146,8 +146,8 @@ class CustomNavbar extends HTMLElement {
                         <a href="#home" class="nav-link">Home</a>
                         <a href="#skills" class="nav-link">Skills</a>
                         <a href="#experience" class="nav-link">Experience</a>
-                        <a href="#projects" class="nav-link">Projects</a>
                         <a href="#education" class="nav-link">Education</a>
+                        <a href="#projects" class="nav-link">Projects</a>
                         <a href="#contact" class="nav-link">Contact</a>
                         <custom-theme-toggle></custom-theme-toggle>
                     </div>
