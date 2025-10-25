@@ -148,7 +148,7 @@ typeSpeed: 50,
             title: 'Gallbladder Cancer Detection',
             description: 'Built a CNN-based model to classify ultrasound images.',
             technologies: ['Deep Learning', 'Python', 'TensorFlow'],
-            image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=640&q=80',
+            image: '/images/5.png',
             links: [
                 { label: 'Github', url: '#' }
             ]
@@ -157,7 +157,7 @@ typeSpeed: 50,
             title: 'Library Management System',
             description: 'Developed a CRUD-based desktop application for managing book borrowing/returns.',
             technologies: ['Python'],
-            image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=640&q=80',
+            image: '/images/3.png',
             links: [
                 { label: 'Github', url: '#' }
             ]
@@ -166,7 +166,7 @@ typeSpeed: 50,
             title: 'Bus Management System',
             description: 'Developed system for managing bus tickets and schedules.',
             technologies: ['Java'],
-            image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=640&q=80',
+            image: '/images/1.png',
             links: [
                 { label: 'Github', url: '#' }
             ]
@@ -175,7 +175,7 @@ typeSpeed: 50,
             title: 'Morse Decoder',
             description: 'Hardware project decoding Morse code into text.',
             technologies: ['Arduino', 'C'],
-            image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=640&q=80',
+            image: '/images/8.png',
             links: [
                 { label: 'Github', url: '#' }
             ]
@@ -184,14 +184,14 @@ typeSpeed: 50,
             title: 'DIU Transport',
             description: 'A modern, minimal, responsive website for DIU transport schedules.',
             technologies: ['HTML', 'CSS', 'JS'],
-            image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=640&q=80',
+            image: '/images/14.png',
             links: []
         },
         {
             title: 'University Network Simulator',
             description: 'Implementing a scalable network for a university for simulation and configuration.',
             technologies: ['Cisco'],
-            image: 'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=640&q=80',
+            image: '/images/15.png',
             links: [
                 { label: 'Live', url: '#' },
                 { label: 'Github', url: '#' }
