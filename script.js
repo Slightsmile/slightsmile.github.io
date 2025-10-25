@@ -148,7 +148,7 @@ typeSpeed: 50,
             title: 'Gallbladder Cancer Detection',
             description: 'Built a CNN-based model to classify ultrasound images.',
             technologies: ['Deep Learning', 'Python', 'TensorFlow'],
-            image: 'images/5.png',
+            image: './images/5.png',
             links: [
                 { label: 'Github', url: 'https://github.com/Slightsmile/Gallblader-Cancer-Detection-DL' }
             ]
@@ -157,7 +157,7 @@ typeSpeed: 50,
             title: 'Library Management System',
             description: 'Developed a CRUD-based desktop application for managing book borrowing/returns.',
             technologies: ['Python'],
-            image: 'images/3.png',
+            image: './images/3.png',
             links: [
                 { label: 'Github', url: 'https://github.com/Slightsmile/Library-MS-Project' }
             ]
@@ -166,7 +166,7 @@ typeSpeed: 50,
             title: 'Bus Management System',
             description: 'Developed system for managing bus tickets and schedules.',
             technologies: ['Java'],
-            image: 'images/1.png',
+            image: './images/1.png',
             links: [
                 { label: 'Github', url: 'https://github.com/Slightsmile/Bus-MS-Project' }
             ]
@@ -175,7 +175,7 @@ typeSpeed: 50,
             title: 'Morse Decoder',
             description: 'Hardware project decoding Morse code into text.',
             technologies: ['Arduino', 'C'],
-            image: 'images/8.png',
+            image: './images/8.png',
             links: [
                 { label: 'Github', url: 'https://github.com/Slightsmile/Morse-Decoder-Arduino-Project' }
             ]
@@ -184,14 +184,14 @@ typeSpeed: 50,
             title: 'DIU Transport',
             description: 'A modern, minimal, responsive website for DIU transport schedules.',
             technologies: ['HTML', 'CSS', 'JS'],
-            image: 'images/14.png',
+            image: './images/14.png',
             links: [{ label: 'Live', url: 'https://slightsmile.github.io/DIU-Transport/' }]
         },
         {
             title: 'University Network Simulator',
             description: 'Implementing a scalable network for a university for simulation and configuration.',
             technologies: ['Cisco'],
-            image: 'images/15.png',
+            image: './images/15.png',
             links: [
                 { label: 'Github', url: 'https://github.com/Slightsmile/University-Network-Simulator' }
             ]
