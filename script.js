@@ -149,41 +149,24 @@ typeSpeed: 50,
         experienceContainer.appendChild(expItem);
     });
 
-    // Populate projects
+    // Populate projects with Load More/Collapse functionality
     const projectsContainer = document.querySelector('#projects > div');
+    const loadMoreBtn = document.getElementById('load-more-projects');
     const projects = [
         {
             title: 'Gallbladder Cancer Detection',
             description: 'Built a CNN-based model to classify ultrasound images.',
-            technologies: ['Deep Learning', 'Python', 'TensorFlow'],
-            image: './images/5.png',
+            technologies: ['Deep Learning', 'Python', 'PyTorch'],
+            image: './images/disease.png',
             links: [
                 { label: 'Github', url: 'https://github.com/Slightsmile/Gallblader-Cancer-Detection-DL' }
             ]
         },
         {
-            title: 'Library Management System',
-            description: 'Developed a CRUD-based desktop application for managing book borrowing/returns.',
-            technologies: ['Python'],
-            image: './images/3.png',
-            links: [
-                { label: 'Github', url: 'https://github.com/Slightsmile/Library-MS-Project' }
-            ]
-        },
-        {
-            title: 'Bus Management System',
-            description: 'Developed system for managing bus tickets and schedules.',
-            technologies: ['Java'],
-            image: './images/1.png',
-            links: [
-                { label: 'Github', url: 'https://github.com/Slightsmile/Bus-MS-Project' }
-            ]
-        },
-        {
             title: 'Morse Decoder',
             description: 'Hardware project decoding Morse code into text.',
-            technologies: ['Arduino', 'C'],
-            image: './images/8.png',
+            technologies: ['Arduino UNO', 'C'],
+            image: './images/morse.png',
             links: [
                 { label: 'Github', url: 'https://github.com/Slightsmile/Morse-Decoder-Arduino-Project' }
             ]
@@ -192,55 +175,149 @@ typeSpeed: 50,
             title: 'DIU Transport',
             description: 'A modern, minimal, responsive website for DIU transport schedules.',
             technologies: ['HTML', 'CSS', 'JS'],
-            image: './images/14.png',
+            image: './images/diubus.png',
             links: [{ label: 'Live', url: 'https://slightsmile.github.io/DIU-Transport/' }]
         },
         {
             title: 'University Network Simulator',
             description: 'Implementing a scalable network for a university for simulation and configuration.',
             technologies: ['Cisco'],
-            image: './images/15.png',
+            image: './images/network.png',
             links: [
                 { label: 'Github', url: 'https://github.com/Slightsmile/University-Network-Simulator' }
+            ]
+        },
+        {
+            title: 'Subtext',
+            description: 'A secure multi-platform chat app',
+            technologies: ['Flutter','Dart','Firebase'],
+            image: './images/subtext.png',
+            links: [
+                { label: 'Github', url: 'https://github.com/Slightsmile/Subtext' }
+            ]
+        },
+        {
+            title: 'Classmate+',
+            description: 'Student productivity app design combining tasks and organization to boost motivation and success.',
+            technologies: ['Figma'],
+            image: './images/classmate.png',
+            links: [
+                { label: 'Live', url: 'https://www.google.com/url?q=https%3A%2F%2Fwww.figma.com%2Fproto%2FNkYm8rT7KbCRHIadk5NKIP%2FClassMate-%3Fnode-id%3D2-702%26starting-point-node-id%3D7%253A835%26t%3DizewGxjNkBLrDTdA-1&sa=D&sntz=1&usg=AOvVaw1szct3YA0-tdQ-hxRX3tSM' }
+            ]
+        },
+        {
+            title: 'Mini SQL Interpreter',
+            description: 'A lightweight SQL-like interpreter for querying CSV files',
+            technologies: ['C','FLex','Bison'],
+            image: './images/sql.png',
+            links: [
+                { label: 'Github', url: 'https://github.com/Slightsmile/Mini-Sql-Interpreter' }
+            ]
+        },
+        {
+            title: 'MemSim',
+            description: 'Explore operating system memory management through interactive simulations and visualization.',
+            technologies: ['HTML','CSS','JS'],
+            image: './images/memsim.png',
+            links: [
+                { label: 'Live', url: 'https://slightsmile.github.io/MemSim/' }
+            ]
+        },
+        {
+            title: 'Digital Door Lock',
+            description: 'A smart digital door lock built using Arduino Nano for secure home or office access control.',
+            technologies: ['Arduino Nano'],
+            image: './images/lock.png',
+            links: [
+                { label: 'Github', url: 'https://github.com/Slightsmile/DoorLock-Arduino-Project' }
+            ]
+        },
+        {
+            title: 'Covid-19 Prediction',
+            description: 'Predicts COVID-19 from symptoms using machine learning and compares models for accuracy.',
+            technologies: ['Machine Learning','Python','Scikit-learn'],
+            image: './images/disease.png',
+            links: [
+                { label: 'Github', url: 'https://github.com/Slightsmile/Covid-Prediction-ML' }
+            ]
+        },
+        {
+            title: 'Library Management System',
+            description: 'Developed a CRUD-based desktop application for managing book borrowing/returns.',
+            technologies: ['Python','Tkinter','PyMySQL'],
+            image: './images/library.png',
+            links: [
+                { label: 'Github', url: 'https://github.com/Slightsmile/Library-MS-Project' }
+            ]
+        },
+        {
+            title: 'Bus Management System',
+            description: 'Developed system for managing bus tickets and schedules.',
+            technologies: ['Java','Java Swing','MySQL'],
+            image: './images/bus.png',
+            links: [
+                { label: 'Github', url: 'https://github.com/Slightsmile/Bus-MS-Project' }
             ]
         }
     ];
 
-    projects.forEach(project => {
-        const projectCard = document.createElement('div');
-    projectCard.className = 'project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md slide-up relative flex flex-col';
-    // Ensure all cards have the same minimum height for consistency
-    projectCard.style.minHeight = '420px';
-        // Technologies: two rows, items wrap if needed
-        projectCard.innerHTML = `
-            <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover">
-            <div class="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">${project.title}</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">${project.description}</p>
-                    <div class="flex flex-wrap gap-2 mb-2" style="flex-wrap: wrap; max-height: 48px; overflow: visible;">
-                        ${project.technologies.map(tech => 
-                            `<span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-sm rounded-full">${tech}</span>`
-                        ).join('')}
+    let showingAllProjects = false;
+    function renderProjects(showAll = false) {
+        projectsContainer.innerHTML = '';
+        let count = showAll ? projects.length : 3;
+        for (let i = 0; i < count && i < projects.length; i++) {
+            const project = projects[i];
+            const projectCard = document.createElement('div');
+            projectCard.className = 'project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md slide-up relative flex flex-col';
+            projectCard.style.minHeight = '420px';
+            projectCard.innerHTML = `
+                <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover">
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">${project.title}</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">${project.description}</p>
+                        <div class="flex flex-wrap gap-2 mb-2" style="flex-wrap: wrap; max-height: 48px; overflow: visible;">
+                            ${project.technologies.map(tech => 
+                                `<span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-sm rounded-full">${tech}</span>`
+                            ).join('')}
+                        </div>
                     </div>
+                    ${project.links && project.links.length > 0 ? `
+                        <div class="flex gap-2 mt-4">
+                            ${project.links.map(link => {
+                                let icon = '';
+                                if (link.label.toLowerCase() === 'github') {
+                                    icon = '<i data-feather="github"></i>';
+                                } else if (link.label.toLowerCase() === 'live') {
+                                    icon = '<i data-feather="external-link"></i>';
+                                }
+                                return `<a href="${link.url}" target="_blank" class="flex items-center gap-1 px-2 py-1.5 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow hover:bg-indigo-800 transition-all duration-300 whitespace-nowrap" style="min-width:56px;">${icon}<span class='px-3 py-1'>${link.label}</span></a>`;
+                            }).join('')}
+                        </div>
+                    ` : ''}
                 </div>
-                ${project.links && project.links.length > 0 ? `
-                    <div class="flex gap-2 mt-4">
-                        ${project.links.map(link => {
-                            let icon = '';
-                            if (link.label.toLowerCase() === 'github') {
-                                icon = '<i data-feather="github"></i>';
-                            } else if (link.label.toLowerCase() === 'live') {
-                                icon = '<i data-feather="external-link"></i>';
-                            }
-                            return `<a href="${link.url}" target="_blank" class="flex items-center gap-1 px-2 py-1.5 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow hover:bg-indigo-800 transition-all duration-300 whitespace-nowrap" style="min-width:56px;">${icon}<span class='px-3 py-1'>${link.label}</span></a>`;
-                        }).join('')}
-                    </div>
-                ` : ''}
-            </div>
-        `;
-        projectsContainer.appendChild(projectCard);
-    });
+            `;
+            projectsContainer.appendChild(projectCard);
+        }
+        feather.replace();
+    }
+
+    // Initial render (show 6 projects)
+    renderProjects(false);
+
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            if (!showingAllProjects) {
+                renderProjects(true);
+                loadMoreBtn.textContent = 'Collapse';
+                showingAllProjects = true;
+            } else {
+                renderProjects(false);
+                loadMoreBtn.textContent = 'Load More';
+                showingAllProjects = false;
+            }
+        });
+    }
 
     // Populate education
     const educationContainer = document.querySelector('#education > div');
