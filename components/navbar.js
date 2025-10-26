@@ -2,11 +2,7 @@ class CustomNavbar extends HTMLElement {
     connectedCallback() {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
-                @media (min-width: 769px) {
-                    .mobile-menu-btn {
-                        display: none !important;
-                    }
-                }
+                
             <style>
                 nav {
                     background: transparent;
