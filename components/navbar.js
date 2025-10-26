@@ -2,6 +2,11 @@ class CustomNavbar extends HTMLElement {
     connectedCallback() {
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
+                @media (min-width: 769px) {
+                    .mobile-menu-btn {
+                        display: none !important;
+                    }
+                }
             <style>
                 nav {
                     background: transparent;
@@ -99,15 +104,31 @@ class CustomNavbar extends HTMLElement {
                 }
                 
                 .mobile-menu-btn {
-                    display: none;
                     background: none;
                     border: none;
+                    border-radius: 0;
                     cursor: pointer;
-                    color: #4b5563;
+                    color: #fff !important;
+                    width: auto;
+                    height: auto;
+                    align-items: center;
+                    justify-content: center;
+                    transition: background 0.2s;
+                    display: none;
+                }
+                @media (max-width: 768px) {
+                    .mobile-menu-btn {
+                        display: flex !important;
+                    }
+                }
+                @media (max-width: 768px) {
+                    .mobile-menu-btn {
+                        display: flex;
+                    }
                 }
                 
                 .dark .mobile-menu-btn {
-                    color: #d1d5db;
+                    color: #fff !important;
                 }
                 
                 @media (max-width: 768px) {
@@ -153,7 +174,13 @@ class CustomNavbar extends HTMLElement {
                     </div>
                     
                     <button class="mobile-menu-btn">
-                        <i data-feather="menu"></i>
+                        <span class="hamburger-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect y="6" width="28" height="3" rx="1.5" fill="#fff" />
+                                <rect y="13" width="28" height="3" rx="1.5" fill="#fff" />
+                                <rect y="20" width="28" height="3" rx="1.5" fill="#fff" />
+                            </svg>
+                        </span>
                     </button>
                 </div>
             </nav>
@@ -165,15 +192,7 @@ class CustomNavbar extends HTMLElement {
         
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                feather.replace();
-                icon.setAttribute('data-feather', 'x');
-            } else {
-                feather.replace();
-                icon.setAttribute('data-feather', 'menu');
-            }
-            feather.replace();
+            // Optionally animate or toggle hamburger to X here if desired
         });
         
         // Highlight active section & navbar scroll effect
@@ -209,9 +228,6 @@ class CustomNavbar extends HTMLElement {
             item.addEventListener('click', () => {
                 if (window.innerWidth < 768) {
                     navLinks.classList.remove('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.setAttribute('data-feather', 'menu');
-                    feather.replace();
                 }
             });
         });
