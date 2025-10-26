@@ -51,7 +51,7 @@ typeSpeed: 50,
         });
     });
 
-    // Populate skills as 3 centered rows, 7 logos per row
+    // Populate skills: 5 per row on mobile, 7 per row on desktop
     const skillsContainer = document.getElementById('skills-logos');
     const skills = [
         { name: 'C', icon: 'c' },
@@ -76,23 +76,31 @@ typeSpeed: 50,
         { name: 'Canva', icon: 'canva' },
         { name: 'Capcut', icon: 'capcut' }
     ];
-    for (let i = 0; i < 3; i++) {
-        const row = document.createElement('div');
-        row.className = 'flex flex-row justify-center items-center gap-8';
-        for (let j = 0; j < 7; j++) {
-            const idx = i * 7 + j;
-            if (idx >= skills.length) break;
-            const skill = skills[idx];
-            const logo = document.createElement('a');
-            logo.href = 'https://skills.syvixor.com';
-            logo.target = '_blank';
-            logo.rel = 'noopener';
-            logo.title = skill.name;
-            logo.innerHTML = `<img src="https://skills.syvixor.com/api/icons?i=${skill.icon}" alt="${skill.name} icon" style="width:72px;height:64px;object-fit:contain;"/>`;
-            row.appendChild(logo);
+    function renderSkillsRows() {
+        skillsContainer.innerHTML = '';
+        const isMobile = window.innerWidth <= 768;
+        const perRow = isMobile ? 5 : 7;
+        const numRows = Math.ceil(skills.length / perRow);
+        for (let i = 0; i < numRows; i++) {
+            const row = document.createElement('div');
+            row.className = 'flex flex-row justify-center items-center gap-8';
+            for (let j = 0; j < perRow; j++) {
+                const idx = i * perRow + j;
+                if (idx >= skills.length) break;
+                const skill = skills[idx];
+                const logo = document.createElement('a');
+                logo.href = 'https://skills.syvixor.com';
+                logo.target = '_blank';
+                logo.rel = 'noopener';
+                logo.title = skill.name;
+                logo.innerHTML = `<img src="https://skills.syvixor.com/api/icons?i=${skill.icon}" alt="${skill.name} icon" style="width:72px;height:64px;object-fit:contain;"/>`;
+                row.appendChild(logo);
+            }
+            skillsContainer.appendChild(row);
         }
-        skillsContainer.appendChild(row);
     }
+    renderSkillsRows();
+    window.addEventListener('resize', renderSkillsRows);
 
     // Populate experience
     const experienceContainer = document.querySelector('.timeline');
