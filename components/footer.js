@@ -1,19 +1,21 @@
 class CustomFooter extends HTMLElement {
     connectedCallback() {
         this.attachShadow({ mode: 'open' });
+        const isDark = document.body.classList.contains('dark');
         this.shadowRoot.innerHTML = `
             <style>
                 footer {
-                    background-color: #f9fafb;
-                    color: #4b5563;
+                    background-color: #fafafa;
+                    color: #111827;
                     padding: 4rem 2rem;
                     text-align: center;
                 }
-                
-                .dark footer {
-                    background-color: #111827;
-                    color: #d1d5db;
-                }
+                    footer {
+                        background-color: #111827;
+                        color: #fff;
+                        padding: 4rem 2rem;
+                        text-align: center;
+                    }
                 
                 .footer-content {
                     max-width: 1200px;
@@ -49,6 +51,7 @@ class CustomFooter extends HTMLElement {
                 
                 .copyright {
                     font-size: 0.875rem;
+                    color: #6b7280;
                 }
                 
                 .footer-links {
@@ -57,7 +60,7 @@ class CustomFooter extends HTMLElement {
                 }
                 
                 .footer-link {
-                    color: #4b5563;
+                    color: #ffffffff;
                     text-decoration: none;
                     font-weight: 500;
                     transition: color 0.3s ease;
@@ -76,7 +79,7 @@ class CustomFooter extends HTMLElement {
                 }
             </style>
             
-            <footer>
+            <footer class="${isDark ? 'dark' : ''}">
                 <div class="footer-content">
                     <div class="social-links">
                         <a href="https://github.com" class="social-link" target="_blank" rel="noopener noreferrer">
@@ -99,4 +102,11 @@ class CustomFooter extends HTMLElement {
                         <a href="#experience" class="footer-link">Experience</a>
                         <a href="#projects" class="footer-link">Projects</a>
                         <a href="#education" class="footer-link">Education</a>
-                       {"ok":false,"message":"Request timeout: The AI model took too long to respond. Please try again with a simpler prompt or try a different model."}
+                        </div>
+                        <div class="copyright">&copy; 2025 MD. Mohiuddin Ahmed. All rights reserved.</div>
+                    </div>
+                </footer>
+            `;
+        }
+    }
+    customElements.define('custom-footer', CustomFooter);
