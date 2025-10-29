@@ -62,6 +62,31 @@ h1, h2, h3, h4 {
     }
 }
 
+/* Skill box for skills section */
+.skill-box {
+    width: 72px;
+    height: 64px;
+    min-width: 0;
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#skills-logos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
 /* Timeline styling */
 .timeline {
     position: relative;

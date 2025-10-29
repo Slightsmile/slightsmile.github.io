@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
         strings: [
             'Data Analyst',
             'Software Developer',
+            'Designer',
             'Machine Learning Enthusiast',
-            'Problem Solver',
             'Tech Explorer'
         ],
 typeSpeed: 50,
@@ -83,7 +83,8 @@ typeSpeed: 50,
         const numRows = Math.ceil(skills.length / perRow);
         for (let i = 0; i < numRows; i++) {
             const row = document.createElement('div');
-            row.className = 'flex flex-row justify-center items-center gap-8';
+            row.className = 'flex flex-row flex-wrap justify-center items-center gap-4 w-full';
+            let skillsInRow = [];
             for (let j = 0; j < perRow; j++) {
                 const idx = i * perRow + j;
                 if (idx >= skills.length) break;
@@ -94,7 +95,36 @@ typeSpeed: 50,
                 logo.rel = 'noopener';
                 logo.title = skill.name;
                 logo.innerHTML = `<img src="https://skills.syvixor.com/api/icons?i=${skill.icon}" alt="${skill.name} icon" style="width:72px;height:64px;object-fit:contain;"/>`;
-                row.appendChild(logo);
+                logo.className = 'skill-box';
+                skillsInRow.push(logo);
+            }
+            // If last row and fewer than perRow skills, add empty boxes
+            if (i === numRows - 1 && skillsInRow.length < perRow) {
+                // If only one skill, center it by adding empty boxes before and after
+                if (skillsInRow.length === 1) {
+                    for (let k = 0; k < Math.floor(perRow / 2); k++) {
+                        const emptyBox = document.createElement('div');
+                        emptyBox.className = 'skill-box';
+                        row.appendChild(emptyBox);
+                    }
+                    row.appendChild(skillsInRow[0]);
+                    for (let k = 0; k < Math.ceil(perRow / 2) - 1; k++) {
+                        const emptyBox = document.createElement('div');
+                        emptyBox.className = 'skill-box';
+                        row.appendChild(emptyBox);
+                    }
+                } else {
+                    // Add empty boxes at the end for other cases
+                    skillsInRow.forEach(box => row.appendChild(box));
+                    for (let k = skillsInRow.length; k < perRow; k++) {
+                        const emptyBox = document.createElement('div');
+                        emptyBox.className = 'skill-box';
+                        row.appendChild(emptyBox);
+                    }
+                }
+            } else {
+                // Add all skill boxes to row
+                skillsInRow.forEach(box => row.appendChild(box));
             }
             skillsContainer.appendChild(row);
         }
