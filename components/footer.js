@@ -13,7 +13,7 @@ class CustomFooter extends HTMLElement {
                     footer {
                         background-color: #111827;
                         color: #fff;
-                        padding: 4rem 2rem;
+                        padding: 2rem 2rem;
                         text-align: center;
                     }
                 
@@ -23,7 +23,7 @@ class CustomFooter extends HTMLElement {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    gap: 2rem;
+                    gap: 1rem;
                 }
                 
                 .social-links {
@@ -57,6 +57,8 @@ class CustomFooter extends HTMLElement {
                 .footer-links {
                     display: flex;
                     gap: 1.5rem;
+                        flex-wrap: wrap;
+                        justify-content: center;
                 }
                 
                 .footer-link {
@@ -77,6 +79,11 @@ class CustomFooter extends HTMLElement {
                 .dark .footer-link:hover {
                     color: #818cf8;
                 }
+
+                    .footer-link.centered-last {
+                        flex-basis: 100%;
+                        text-align: center;
+                    }
             </style>
             
             <footer class="${isDark ? 'dark' : ''}">
@@ -100,12 +107,36 @@ class CustomFooter extends HTMLElement {
                         <a href="#home" class="footer-link">Home</a>
                         <a href="#skills" class="footer-link">Skills</a>
                         <a href="#experience" class="footer-link">Experience</a>
-                        <a href="#projects" class="footer-link">Projects</a>
                         <a href="#education" class="footer-link">Education</a>
+                        <a href="#projects" class="footer-link">Projects</a>
                         </div>
                         <div class="copyright">&copy; 2025 MD. Mohiuddin Ahmed. All rights reserved.</div>
                     </div>
                 </footer>
+                <script>
+                // Center last link if it wraps to a new row
+                (() => {
+                    const footerLinks = this.shadowRoot.querySelector('.footer-links');
+                    if (!footerLinks) return;
+                    const links = Array.from(footerLinks.children);
+                    if (links.length < 2) return;
+                    // Remove previous centering
+                    links.forEach(link => link.classList.remove('centered-last'));
+                    // Check if last link is on a new row
+                    const lastLink = links[links.length - 1];
+                    const prevLink = links[links.length - 2];
+                    if (lastLink.offsetTop > prevLink.offsetTop) {
+                        lastLink.classList.add('centered-last');
+                    }
+                    // Recheck on window resize
+                    window.addEventListener('resize', () => {
+                        links.forEach(link => link.classList.remove('centered-last'));
+                        if (lastLink.offsetTop > prevLink.offsetTop) {
+                            lastLink.classList.add('centered-last');
+                        }
+                    });
+                })();
+                </script>
             `;
         }
     }
