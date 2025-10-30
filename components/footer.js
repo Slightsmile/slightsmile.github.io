@@ -1,4 +1,3 @@
-
 class CustomFooter extends HTMLElement {
     connectedCallback() {
         this.attachShadow({ mode: 'open' });
@@ -57,10 +56,10 @@ class CustomFooter extends HTMLElement {
             <footer>
                 <div class="footer-content">
                     <div class="social-links">
-                        <a href="https://github.com" class="social-link" target="_blank" rel="noopener noreferrer"><i data-feather="github"></i></a>
-                        <a href="https://linkedin.com" class="social-link" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i></a>
+                        <a href="https://github.com/mohi28" class="social-link" target="_blank" rel="noopener noreferrer"><i data-feather="github"></i></a>
+                        <a href="https://linkedin.com/in/mohi28" class="social-link" target="_blank" rel="noopener noreferrer"><i data-feather="linkedin"></i></a>
                         <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener noreferrer"><i data-feather="twitter"></i></a>
-                        <a href="mailto:example@example.com" class="social-link"><i data-feather="mail"></i></a>
+                        <a href="mailto:akibh987@gmail.com" class="social-link"><i data-feather="mail"></i></a>
                     </div>
                     <div class="footer-links">
                         <a href="#home" class="footer-link">Home</a>

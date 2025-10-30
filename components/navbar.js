@@ -21,10 +21,10 @@ class CustomNavbar extends HTMLElement {
                 .nav-container {
                     max-width: 1200px;
                     margin: 0 auto;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        gap: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 1rem;
                 }
                 .logo {
                     font-family: 'Space Grotesk', sans-serif;
@@ -34,12 +34,12 @@ class CustomNavbar extends HTMLElement {
                     text-decoration: none;
                     transition: color 0.3s ease;
                 }
-                    .nav-links {
-                        display: flex;
-                        gap: 1.5rem;
-                        justify-content: center;
-                        flex: 1;
-                    }
+                .nav-links {
+                    display: flex;
+                    gap: 1.5rem;
+                    justify-content: center;
+                    flex: 1;
+                }
                 .nav-link {
                     color: var(--text-secondary);
                     text-decoration: none;
@@ -83,13 +83,13 @@ class CustomNavbar extends HTMLElement {
                     transition: background 0.2s;
                     display: none;
                 }
-                    .mobile-theme-toggle {
-                        display: none;
-                    }
-                    .desktop-theme-toggle {
-                        display: flex;
-                        align-items: center;
-                    }
+                .mobile-theme-toggle {
+                    display: none;
+                }
+                .desktop-theme-toggle {
+                    display: flex;
+                    align-items: center;
+                }
                 @media (max-width: 768px) {
                     .mobile-menu-btn {
                         display: flex !important;
@@ -114,22 +114,22 @@ class CustomNavbar extends HTMLElement {
                     .mobile-menu-btn {
                         display: block;
                     }
-                        .mobile-theme-toggle {
-                            display: flex !important;
-                            margin: 0 1rem;
-                            align-items: center;
-                        }
-                        .desktop-theme-toggle {
-                            display: none !important;
-                        }
-                        .nav-container {
-                            flex-direction: row;
-                            justify-content: space-between;
-                            align-items: center;
-                        }
-                        .logo {
-                            margin-right: 0.5rem;
-                        }
+                    .mobile-theme-toggle {
+                        display: flex !important;
+                        margin: 0 1rem;
+                        align-items: center;
+                    }
+                    .desktop-theme-toggle {
+                        display: none !important;
+                    }
+                    .nav-container {
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                    .logo {
+                        margin-right: 0.5rem;
+                    }
                 }
             </style>
             <nav>
@@ -138,25 +138,25 @@ class CustomNavbar extends HTMLElement {
                         <i data-feather="code"></i>
                         mohi!
                     </a>
-                        <div class="nav-links">
-                            <a href="#home" class="nav-link">Home</a>
-                            <a href="#skills" class="nav-link">Skills</a>
-                            <a href="#experience" class="nav-link">Experience</a>
-                            <a href="#education" class="nav-link">Education</a>
-                            <a href="#projects" class="nav-link">Projects</a>
-                            <a href="#contact" class="nav-link">Contact</a>
-                        </div>
-                        <custom-theme-toggle class="desktop-theme-toggle"></custom-theme-toggle>
-                        <custom-theme-toggle class="mobile-theme-toggle"></custom-theme-toggle>
-                        <button class="mobile-menu-btn">
-                            <span class="hamburger-icon">
-                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect y="6" width="28" height="3" rx="1.5" fill="var(--hamburger-color)" />
-                                        <rect y="13" width="28" height="3" rx="1.5" fill="var(--hamburger-color)" />
-                                        <rect y="20" width="28" height="3" rx="1.5" fill="var(--hamburger-color)" />
-                                    </svg>
-                            </span>
-                        </button>
+                    <div class="nav-links">
+                        <a href="#home" class="nav-link">Home</a>
+                        <a href="#skills" class="nav-link">Skills</a>
+                        <a href="#experience" class="nav-link">Experience</a>
+                        <a href="#education" class="nav-link">Education</a>
+                        <a href="#projects" class="nav-link">Projects</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </div>
+                    <custom-theme-toggle class="desktop-theme-toggle"></custom-theme-toggle>
+                    <custom-theme-toggle class="mobile-theme-toggle"></custom-theme-toggle>
+                    <button class="mobile-menu-btn">
+                        <span class="hamburger-icon">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect y="6" width="28" height="3" rx="1.5" fill="var(--hamburger-color)" />
+                                <rect y="13" width="28" height="3" rx="1.5" fill="var(--hamburger-color)" />
+                                <rect y="20" width="28" height="3" rx="1.5" fill="var(--hamburger-color)" />
+                            </svg>
+                        </span>
+                    </button>
                 </div>
             </nav>
         `;

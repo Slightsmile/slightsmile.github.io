@@ -1,6 +1,8 @@
-// Initialize Typed.js
+// --- Optimized and cleaned code below ---
+
 document.addEventListener('DOMContentLoaded', () => {
-    const typed = new Typed('#typed', {
+    // Typed.js animation
+    new Typed('#typed', {
         strings: [
             'Data Analyst',
             'Software Developer',
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cursorChar: '|'
     });
 
-    // Initialize GSAP animations
+    // GSAP section animations
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('section').forEach(section => {
         gsap.from(section, {
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Skills
+    // Skills rendering
     const skillsContainer = document.getElementById('skills-logos');
     const skills = [
         { name: 'C', icon: 'c' }, { name: 'C++', icon: 'cpp' }, { name: 'Java', icon: 'java' }, { name: 'Python', icon: 'python' },
@@ -52,19 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Git', icon: 'git' }, { name: 'Arduino', icon: 'arduino' }, { name: 'Cisco', icon: 'cisco' }, { name: 'Ubuntu', icon: 'ubuntu' },
         { name: 'Notion', icon: 'notion' }, { name: 'Latex', icon: 'latex' }, { name: 'Figma', icon: 'figma' }, { name: 'Canva', icon: 'canva' }, { name: 'Capcut', icon: 'capcut' }
     ];
-    const renderSkillsRows = () => {
+    function renderSkillsRows() {
         skillsContainer.innerHTML = '';
         const isMobile = window.innerWidth <= 768;
         const perRow = isMobile ? 5 : 7;
-        const numRows = Math.ceil(skills.length / perRow);
-        for (let i = 0; i < numRows; i++) {
+        for (let i = 0; i < skills.length; i += perRow) {
             const row = document.createElement('div');
             row.className = 'flex flex-row flex-wrap justify-center items-center gap-4 w-full';
-            let skillsInRow = [];
-            for (let j = 0; j < perRow; j++) {
-                const idx = i * perRow + j;
-                if (idx >= skills.length) break;
-                const skill = skills[idx];
+            for (let j = i; j < i + perRow && j < skills.length; j++) {
+                const skill = skills[j];
                 const logo = document.createElement('a');
                 logo.href = 'https://skills.syvixor.com';
                 logo.target = '_blank';
@@ -72,31 +70,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 logo.title = skill.name;
                 logo.innerHTML = `<img src="https://skills.syvixor.com/api/icons?i=${skill.icon}" alt="${skill.name} icon" style="width:72px;height:64px;object-fit:contain;"/>`;
                 logo.className = 'skill-box';
-                skillsInRow.push(logo);
-            }
-            if (i === numRows - 1 && skillsInRow.length < perRow) {
-                if (skillsInRow.length === 1) {
-                    for (let k = 0; k < Math.floor(perRow / 2); k++) row.appendChild(document.createElement('div')).className = 'skill-box';
-                    row.appendChild(skillsInRow[0]);
-                    for (let k = 0; k < Math.ceil(perRow / 2) - 1; k++) row.appendChild(document.createElement('div')).className = 'skill-box';
-                } else {
-                    skillsInRow.forEach(box => row.appendChild(box));
-                    for (let k = skillsInRow.length; k < perRow; k++) row.appendChild(document.createElement('div')).className = 'skill-box';
-                }
-            } else {
-                skillsInRow.forEach(box => row.appendChild(box));
+                row.appendChild(logo);
             }
             skillsContainer.appendChild(row);
         }
-    };
+    }
     renderSkillsRows();
-    let resizeTimeout;
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(renderSkillsRows, 150);
+        renderSkillsRows();
     });
 
-    // Experience
+    // Experience rendering
     const experienceContainer = document.querySelector('.timeline');
     const experiences = [
         { title: 'Project Associate', company: 'Prospect Engine', period: 'Sep 2024 – Nov 2024', description: 'Data Analysis, Project Monitoring, Client Interaction', position: 'right' },
@@ -118,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         experienceContainer.appendChild(expItem);
     });
 
-    // Projects
+    // Projects rendering
     const projectsContainer = document.querySelector('#projects > div');
     const loadMoreBtn = document.getElementById('load-more-projects');
     const projects = [
@@ -229,11 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         }
     ];
-
     let showingAllProjects = false;
-    const renderProjects = (showAll = false) => {
+    function renderProjects(showAll = false) {
         projectsContainer.innerHTML = '';
-        let count = showAll ? projects.length : 3;
+        const count = showAll ? projects.length : 3;
         for (let i = 0; i < count && i < projects.length; i++) {
             const project = projects[i];
             const projectCard = document.createElement('div');
@@ -264,23 +247,17 @@ document.addEventListener('DOMContentLoaded', () => {
             projectsContainer.appendChild(projectCard);
         }
         feather.replace();
-    };
+    }
     renderProjects(false);
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', () => {
-            if (!showingAllProjects) {
-                renderProjects(true);
-                loadMoreBtn.textContent = 'Collapse';
-                showingAllProjects = true;
-            } else {
-                renderProjects(false);
-                loadMoreBtn.textContent = 'Load More';
-                showingAllProjects = false;
-            }
+            showingAllProjects = !showingAllProjects;
+            renderProjects(showingAllProjects);
+            loadMoreBtn.textContent = showingAllProjects ? 'Collapse' : 'Load More';
         });
     }
 
-    // Education
+    // Education rendering
     const educationContainer = document.querySelector('#education > div');
     educationContainer.classList.add('timeline');
     const education = [
@@ -307,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', e => {
             e.preventDefault();
-            // Here you would typically send the form data to a server
             alert('Thank you for your message! I will get back to you soon.');
             contactForm.reset();
         });
