@@ -4,28 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mohi!</title>
-<link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js" defer></script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+<body class="theme-bg transition-colors duration-300">
     <custom-navbar></custom-navbar>
-    
     <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Hero Section -->
         <section id="home" class="min-h-screen flex items-center py-20">
             <div class="w-full flex flex-col md:flex-row items-center justify-between gap-8">
                 <div class="flex-1">
-                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h1 class="text-4xl md:text-6xl font-bold theme-heading mb-4">
                         Hi, I'm <br><span class="text-indigo-600 dark:text-indigo-400">Mohiuddin Ahmed</span>
                     </h1>
                     <div class="h-12 mb-6">
-                        <span id="typed" class="text-2xl md:text-4xl text-gray-700 dark:text-gray-300"></span>
+                        <span id="typed" class="text-2xl md:text-4xl theme-meta"></span>
                     </div>
                     <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mb-8">
                         Crafting elegant solutions through code. Passionate about data, design, and modern software innovation.
@@ -44,45 +41,27 @@
                 </div>
             </div>
         </section>
-
-        <!-- Skills Section -->
         <section id="skills" class="py-20">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Skills & Expertise</h2>
-            <div id="skills-logos" class="flex flex-col items-center justify-center gap-6">
-                <!-- Skill logos will be populated by JavaScript -->
-            </div>
+            <h2 class="text-3xl font-bold text-center theme-heading mb-12">Skills & Expertise</h2>
+            <div id="skills-logos" class="flex flex-col items-center justify-center gap-6"></div>
         </section>
-
-        <!-- Experience Section -->
         <section id="experience" class="py-20">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Work Experience</h2>
-            <div class="timeline">
-                <!-- Experience items will be populated by JavaScript -->
-            </div>
+            <h2 class="text-3xl font-bold text-center theme-heading mb-12">Work Experience</h2>
+            <div class="timeline"></div>
         </section>
-
-        <!-- Education Section -->
         <section id="education" class="py-20">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Education</h2>
-            <div class="timeline">
-                <!-- Education cards will be populated by JavaScript -->
-            </div>
+            <h2 class="text-3xl font-bold text-center theme-heading mb-12">Education</h2>
+            <div class="timeline"></div>
         </section>
-
-        <!-- Projects Section -->
         <section id="projects" class="py-20">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Featured Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project cards will be populated by JavaScript -->
-            </div>
+            <h2 class="text-3xl font-bold text-center theme-heading mb-12">Featured Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
             <div class="flex justify-center mt-8">
                 <button id="load-more-projects" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-all duration-300 font-semibold shadow-lg">Load More</button>
             </div>
         </section>
-
-        <!-- Contact Section -->
         <section id="contact" class="py-20">
-            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Get In Touch</h2>
+            <h2 class="text-3xl font-bold text-center theme-heading mb-12">Get In Touch</h2>
             <div class="max-w-2xl mx-auto">
                 <div class="flex flex-col items-center gap-4 mt-8">
                     <div class="flex justify-center gap-4">
@@ -93,44 +72,37 @@
                             <i data-feather="github" style="color:white;"></i>
                         </a>
                         <a href="https://linkedin.com/in/mohi28" target="_blank" class="rounded-full bg-gray-200 dark:bg-gray-700 p-3 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 transition-colors" title="LinkedIn">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn" style="width:24px;height:24px;filter:invert(1);"/>
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn" width="24" height="24" style="filter:invert(1);" />
                         </a>
                         <a href="https://figma.com/@mohi28" target="_blank" class="rounded-full bg-gray-200 dark:bg-gray-700 p-3 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 transition-colors" title="Figma">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/figma.svg" alt="Figma" style="width:24px;height:24px;filter:invert(1);"/>
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/figma.svg" alt="Figma" width="24" height="24" style="filter:invert(1);" />
                         </a>
                         <a href="https://dev.to/slightsmile" target="_blank" class="rounded-full bg-gray-200 dark:bg-gray-700 p-3 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 transition-colors" title="Dev.to">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/devdotto.svg" alt="Dev.to" style="width:24px;height:24px;filter:invert(1);"/>
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/devdotto.svg" alt="Dev.to" width="24" height="24" style="filter:invert(1);" />
                         </a>
                     </div>
                     <div class="flex justify-center gap-4">
                         <a href="https://facebook.com/mohi28" target="_blank" class="rounded-full bg-gray-200 dark:bg-gray-700 p-3 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 transition-colors" title="Facebook">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook" style="width:24px;height:24px;filter:invert(1);"/>
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" alt="Facebook" width="24" height="24" style="filter:invert(1);" />
                         </a>
                         <a href="https://wa.me/+8801326561196" target="_blank" class="rounded-full bg-gray-200 dark:bg-gray-700 p-3 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 transition-colors" title="Whatsapp">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/whatsapp.svg" alt="Whatsapp" style="width:24px;height:24px;filter:invert(1);"/>
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/whatsapp.svg" alt="Whatsapp" width="24" height="24" style="filter:invert(1);" />
                         </a>
                         <a href="https://t.me/Slightsmile" target="_blank" class="rounded-full bg-gray-200 dark:bg-gray-700 p-3 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 transition-colors" title="Telegram">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/telegram.svg" alt="Telegram" style="width:24px;height:24px;filter:invert(1);"/>
+                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/telegram.svg" alt="Telegram" width="24" height="24" style="filter:invert(1);" />
                         </a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
     <custom-footer></custom-footer>
-
-    <!-- Back to top button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 bg-indigo-600 text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 bg-indigo-600 text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300" title="Back to top">
         <i data-feather="arrow-up"></i>
     </button>
-
-    <script src="components/navbar.js"></script>
-    <script src="components/footer.js"></script>
-    <script src="components/theme-toggle.js"></script>
-    <script src="script.js"></script>
-    <script>
-        feather.replace();
-    </script>
+    <script src="components/navbar.js" defer></script>
+    <script src="components/footer.js" defer></script>
+    <script src="components/theme-toggle.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

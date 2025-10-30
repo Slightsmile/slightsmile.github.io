@@ -1,5 +1,5 @@
 // Initialize Typed.js
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const typed = new Typed('#typed', {
         strings: [
             'Data Analyst',
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'Machine Learning Enthusiast',
             'Tech Explorer'
         ],
-typeSpeed: 50,
+        typeSpeed: 50,
         backSpeed: 30,
         loop: true,
         showCursor: true,
@@ -17,14 +17,12 @@ typeSpeed: 50,
 
     // Initialize GSAP animations
     gsap.registerPlugin(ScrollTrigger);
-
-    // Animate sections on scroll
     gsap.utils.toArray('section').forEach(section => {
         gsap.from(section, {
             scrollTrigger: {
                 trigger: section,
-                start: "top 80%",
-                toggleActions: "play none none none"
+                start: 'top 80%',
+                toggleActions: 'play none none none'
             },
             opacity: 0,
             y: 50,
@@ -35,48 +33,26 @@ typeSpeed: 50,
     // Back to top button
     const backToTopButton = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTopButton.classList.remove('opacity-0', 'invisible');
-            backToTopButton.classList.add('opacity-100', 'visible');
-        } else {
-            backToTopButton.classList.remove('opacity-100', 'visible');
-            backToTopButton.classList.add('opacity-0', 'invisible');
-        }
+        const show = window.pageYOffset > 300;
+        backToTopButton.classList.toggle('opacity-0', !show);
+        backToTopButton.classList.toggle('invisible', !show);
+        backToTopButton.classList.toggle('opacity-100', show);
+        backToTopButton.classList.toggle('visible', show);
     });
-
     backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Populate skills: 5 per row on mobile, 7 per row on desktop
+    // Skills
     const skillsContainer = document.getElementById('skills-logos');
     const skills = [
-        { name: 'C', icon: 'c' },
-        { name: 'C++', icon: 'cpp' },
-        { name: 'Java', icon: 'java' },
-        { name: 'Python', icon: 'python' },
-        { name: 'HTML5', icon: 'html' },
-        { name: 'CSS', icon: 'css3' },
-        { name: 'JavaScript', icon: 'javascript' },
-        { name: 'Dart', icon: 'dart' },
-        { name: 'Flutter', icon: 'flutter' },
-        { name: 'FastAPI', icon: 'fastapi' },
-        { name: 'MySQL', icon: 'mysql' },
-        { name: 'PostgreSQL', icon: 'postgresql' },
-        { name: 'Git', icon: 'git' },
-        { name: 'Arduino', icon: 'arduino' },
-        { name: 'Cisco', icon: 'cisco' },
-        { name: 'Ubuntu', icon: 'ubuntu' },
-        { name: 'Notion', icon: 'notion' },
-        { name: 'Latex', icon: 'latex' },
-        { name: 'Figma', icon: 'figma' },
-        { name: 'Canva', icon: 'canva' },
-        { name: 'Capcut', icon: 'capcut' }
+        { name: 'C', icon: 'c' }, { name: 'C++', icon: 'cpp' }, { name: 'Java', icon: 'java' }, { name: 'Python', icon: 'python' },
+        { name: 'HTML5', icon: 'html' }, { name: 'CSS', icon: 'css3' }, { name: 'JavaScript', icon: 'javascript' }, { name: 'Dart', icon: 'dart' },
+        { name: 'Flutter', icon: 'flutter' }, { name: 'FastAPI', icon: 'fastapi' }, { name: 'MySQL', icon: 'mysql' }, { name: 'PostgreSQL', icon: 'postgresql' },
+        { name: 'Git', icon: 'git' }, { name: 'Arduino', icon: 'arduino' }, { name: 'Cisco', icon: 'cisco' }, { name: 'Ubuntu', icon: 'ubuntu' },
+        { name: 'Notion', icon: 'notion' }, { name: 'Latex', icon: 'latex' }, { name: 'Figma', icon: 'figma' }, { name: 'Canva', icon: 'canva' }, { name: 'Capcut', icon: 'capcut' }
     ];
-    function renderSkillsRows() {
+    const renderSkillsRows = () => {
         skillsContainer.innerHTML = '';
         const isMobile = window.innerWidth <= 768;
         const perRow = isMobile ? 5 : 7;
@@ -98,88 +74,51 @@ typeSpeed: 50,
                 logo.className = 'skill-box';
                 skillsInRow.push(logo);
             }
-            // If last row and fewer than perRow skills, add empty boxes
             if (i === numRows - 1 && skillsInRow.length < perRow) {
-                // If only one skill, center it by adding empty boxes before and after
                 if (skillsInRow.length === 1) {
-                    for (let k = 0; k < Math.floor(perRow / 2); k++) {
-                        const emptyBox = document.createElement('div');
-                        emptyBox.className = 'skill-box';
-                        row.appendChild(emptyBox);
-                    }
+                    for (let k = 0; k < Math.floor(perRow / 2); k++) row.appendChild(document.createElement('div')).className = 'skill-box';
                     row.appendChild(skillsInRow[0]);
-                    for (let k = 0; k < Math.ceil(perRow / 2) - 1; k++) {
-                        const emptyBox = document.createElement('div');
-                        emptyBox.className = 'skill-box';
-                        row.appendChild(emptyBox);
-                    }
+                    for (let k = 0; k < Math.ceil(perRow / 2) - 1; k++) row.appendChild(document.createElement('div')).className = 'skill-box';
                 } else {
-                    // Add empty boxes at the end for other cases
                     skillsInRow.forEach(box => row.appendChild(box));
-                    for (let k = skillsInRow.length; k < perRow; k++) {
-                        const emptyBox = document.createElement('div');
-                        emptyBox.className = 'skill-box';
-                        row.appendChild(emptyBox);
-                    }
+                    for (let k = skillsInRow.length; k < perRow; k++) row.appendChild(document.createElement('div')).className = 'skill-box';
                 }
             } else {
-                // Add all skill boxes to row
                 skillsInRow.forEach(box => row.appendChild(box));
             }
             skillsContainer.appendChild(row);
         }
-    }
+    };
     renderSkillsRows();
-    window.addEventListener('resize', renderSkillsRows);
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(renderSkillsRows, 150);
+    });
 
-    // Populate experience
+    // Experience
     const experienceContainer = document.querySelector('.timeline');
     const experiences = [
-        {
-            title: 'Project Associate',
-            company: 'Prospect Engine',
-            period: 'Sep 2024 – Nov 2024',
-            description: 'Data Analysis, Project Monitoring, Client Interaction',
-            position: 'right'
-        },
-        {
-            title: 'Scriptwriter',
-            company: 'PC Builder Bangladesh',
-            period: 'Aug 2023 – Oct 2023',
-            description: 'Video Conceptualization, Content Research',
-            position: 'left'
-        },
-        {
-            title: 'Store Manager & Computer Operator',
-            company: 'ShopUP',
-            period: 'Aug 2021 – Oct 2021',
-            description: 'Store & Maintenance Management, Auditing',
-            position: 'right'
-        },
-        {
-            title: 'Salesperson',
-            company: 'Shwapno',
-            period: 'Apr 2019 – Jun 2019',
-            description: 'Sales Management, Customer relationship management',
-            position: 'left'
-        }
+        { title: 'Project Associate', company: 'Prospect Engine', period: 'Sep 2024 – Nov 2024', description: 'Data Analysis, Project Monitoring, Client Interaction', position: 'right' },
+        { title: 'Scriptwriter', company: 'PC Builder Bangladesh', period: 'Aug 2023 – Oct 2023', description: 'Video Conceptualization, Content Research', position: 'left' },
+        { title: 'Store Manager & Computer Operator', company: 'ShopUP', period: 'Aug 2021 – Oct 2021', description: 'Store & Maintenance Management, Auditing', position: 'right' },
+        { title: 'Salesperson', company: 'Shwapno', period: 'Apr 2019 – Jun 2019', description: 'Sales Management, Customer relationship management', position: 'left' }
     ];
-
     experiences.forEach(exp => {
         const expItem = document.createElement('div');
-        expItem.className = `timeline-item ${exp.position} bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md slide-up`;
+        expItem.className = `timeline-item ${exp.position} theme-card-bg theme-text p-6 rounded-lg shadow-md slide-up`;
         expItem.innerHTML = `
             <div class="timeline-content">
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">${exp.title}</h3>
-                <h4 class="text-lg text-indigo-600 dark:text-indigo-400">${exp.company}</h4>
-                <p class="text-gray-500 dark:text-gray-400">${exp.period}</p>
-                <p class="text-gray-600 dark:text-gray-300 mt-2">${exp.description}</p>
+                <h3 class="text-xl font-semibold theme-heading">${exp.title}</h3>
+                <h4 class="text-lg theme-subheading">${exp.company}</h4>
+                <p class="theme-meta">${exp.period}</p>
+                <p class="theme-desc mt-2">${exp.description}</p>
             </div>
         `;
         experienceContainer.appendChild(expItem);
     });
 
-    // Populate projects with Load More/Collapse functionality
+    // Projects
     const projectsContainer = document.querySelector('#projects > div');
     const loadMoreBtn = document.getElementById('load-more-projects');
     const projects = [
@@ -292,35 +231,30 @@ typeSpeed: 50,
     ];
 
     let showingAllProjects = false;
-    function renderProjects(showAll = false) {
+    const renderProjects = (showAll = false) => {
         projectsContainer.innerHTML = '';
         let count = showAll ? projects.length : 3;
         for (let i = 0; i < count && i < projects.length; i++) {
             const project = projects[i];
             const projectCard = document.createElement('div');
-            projectCard.className = 'project-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md slide-up relative flex flex-col';
+            projectCard.className = 'project-card theme-card-bg theme-text rounded-xl overflow-hidden shadow-md slide-up relative flex flex-col';
             projectCard.style.minHeight = '420px';
             projectCard.innerHTML = `
                 <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover">
                 <div class="p-6 flex-1 flex flex-col justify-between">
                     <div>
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">${project.title}</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">${project.description}</p>
+                        <h3 class="text-xl font-semibold theme-heading mb-2">${project.title}</h3>
+                        <p class="theme-desc mb-4">${project.description}</p>
                         <div class="flex flex-wrap gap-2 mb-2" style="flex-wrap: wrap; max-height: 48px; overflow: visible;">
-                            ${project.technologies.map(tech => 
-                                `<span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-sm rounded-full">${tech}</span>`
-                            ).join('')}
+                            ${project.technologies.map(tech => `<span class="px-3 py-1 theme-chip text-sm rounded-full">${tech}</span>`).join('')}
                         </div>
                     </div>
                     ${project.links && project.links.length > 0 ? `
                         <div class="flex gap-2 mt-4">
                             ${project.links.map(link => {
                                 let icon = '';
-                                if (link.label.toLowerCase() === 'github') {
-                                    icon = '<i data-feather="github"></i>';
-                                } else if (link.label.toLowerCase() === 'live') {
-                                    icon = '<i data-feather="external-link"></i>';
-                                }
+                                if (link.label.toLowerCase() === 'github') icon = '<i data-feather="github"></i>';
+                                else if (link.label.toLowerCase() === 'live') icon = '<i data-feather="external-link"></i>';
                                 return `<a href="${link.url}" target="_blank" class="flex items-center gap-1 px-2 py-1.5 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow hover:bg-indigo-800 transition-all duration-300 whitespace-nowrap" style="min-width:56px;">${icon}<span class='px-3 py-1'>${link.label}</span></a>`;
                             }).join('')}
                         </div>
@@ -330,13 +264,10 @@ typeSpeed: 50,
             projectsContainer.appendChild(projectCard);
         }
         feather.replace();
-    }
-
-    // Initial render (show 6 projects)
+    };
     renderProjects(false);
-
     if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function() {
+        loadMoreBtn.addEventListener('click', () => {
             if (!showingAllProjects) {
                 renderProjects(true);
                 loadMoreBtn.textContent = 'Collapse';
@@ -349,42 +280,23 @@ typeSpeed: 50,
         });
     }
 
-    // Populate education
+    // Education
     const educationContainer = document.querySelector('#education > div');
     educationContainer.classList.add('timeline');
     const education = [
-        {
-            degree: 'BSc. in CSE',
-            institution: 'Daffodil International University',
-            period: '2022 - present',
-            description: 'GPA: 3.48/4.0',
-            position: 'right'
-        },
-        {
-            degree: 'HSC (Science)',
-            institution: 'Mohammadpur Preparatory School and College',
-            period: '2019 - 2021',
-            description: 'GPA: 5.0/5.0',
-            position: 'left'
-        },
-        {
-            degree: 'SSC (Science)',
-            institution: 'Dhanmondi Govt. Boys High School',
-            period: '2009 - 2019',
-            description: 'GPA: 4.67/5.0',
-            position: 'right'
-        }
+        { degree: 'BSc. in CSE', institution: 'Daffodil International University', period: '2022 - present', description: 'GPA: 3.48/4.0', position: 'right' },
+        { degree: 'HSC (Science)', institution: 'Mohammadpur Preparatory School and College', period: '2019 - 2021', description: 'GPA: 5.0/5.0', position: 'left' },
+        { degree: 'SSC (Science)', institution: 'Dhanmondi Govt. Boys High School', period: '2009 - 2019', description: 'GPA: 4.67/5.0', position: 'right' }
     ];
-
     education.forEach(edu => {
         const eduItem = document.createElement('div');
-        eduItem.className = `timeline-item ${edu.position} bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md slide-up`;
+        eduItem.className = `timeline-item ${edu.position} theme-card-bg theme-text p-6 rounded-lg shadow-md slide-up`;
         eduItem.innerHTML = `
             <div class="timeline-content">
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white">${edu.degree}</h3>
-                <h4 class="text-lg text-indigo-600 dark:text-indigo-400">${edu.institution}</h4>
-                <p class="text-gray-500 dark:text-gray-400">${edu.period}</p>
-                <p class="text-gray-600 dark:text-gray-300 mt-2">${edu.description}</p>
+                <h3 class="text-xl font-semibold theme-heading">${edu.degree}</h3>
+                <h4 class="text-lg theme-subheading">${edu.institution}</h4>
+                <p class="theme-meta">${edu.period}</p>
+                <p class="theme-desc mt-2">${edu.description}</p>
             </div>
         `;
         educationContainer.appendChild(eduItem);
@@ -393,7 +305,7 @@ typeSpeed: 50,
     // Contact form submission
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', e => {
             e.preventDefault();
             // Here you would typically send the form data to a server
             alert('Thank you for your message! I will get back to you soon.');
