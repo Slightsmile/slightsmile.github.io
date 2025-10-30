@@ -28,6 +28,7 @@ footer {
     --bg-secondary: #f3f4f6;
     --card-bg: #f5f6fa; /* clean card background for light mode */
     --nav-bg: rgba(255, 255, 255, 0.8);
+    --hamburger-color: #111827;
 }
 
 /* .dark rules merged and deduplicated */
@@ -40,6 +41,7 @@ footer {
     --bg-secondary: #1f2937;
     --card-bg: #1f2937; /* requested color for dark mode cards */
     --nav-bg: rgba(17, 24, 39, 0.8);
+    --hamburger-color: #fff;
 }
 .theme-card-bg { background-color: var(--card-bg) !important; }
 
