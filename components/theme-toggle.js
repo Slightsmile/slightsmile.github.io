@@ -22,7 +22,8 @@ class CustomThemeToggle extends HTMLElement {
                 <span class="icon" id="theme-icon"></span>
             </button>
         `;
-        this.updateButton();
+        // Wait for theme to be set before updating icon
+        requestAnimationFrame(() => this.updateButton());
         this.shadowRoot.querySelector('.toggle-btn').addEventListener('click', () => {
             this.toggleTheme();
         });
@@ -60,17 +61,30 @@ class CustomThemeToggle extends HTMLElement {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    // Set theme on load
+    // Set theme on load: default to dark if no preference
     const theme = localStorage.getItem('theme');
     if (theme) {
         document.body.classList.toggle('dark', theme === 'dark');
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    } else {
         document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
     }
+    // Update all theme toggles' icons to match theme
+    document.querySelectorAll('custom-theme-toggle').forEach(el => {
+        if (typeof el.updateButton === 'function') el.updateButton();
+    });
+
+    // Observe DOM for new custom-theme-toggle elements and update their icon
+    const observer = new MutationObserver(() => {
+        document.querySelectorAll('custom-theme-toggle').forEach(el => {
+            if (typeof el.updateButton === 'function') el.updateButton();
+        });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
 });
 
 window.addEventListener('theme-changed', () => {
-    // Update all theme toggles
+    // Update all theme toggles' icons to match theme
     document.querySelectorAll('custom-theme-toggle').forEach(el => {
         if (typeof el.updateButton === 'function') el.updateButton();
     });
