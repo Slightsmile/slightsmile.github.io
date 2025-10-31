@@ -75,6 +75,7 @@ footer {
     filter: brightness(0) invert(0) !important;
 }
 body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+main { margin-top: 2rem; }
 h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
 .fade-in { animation: fadeIn 1s ease-in-out; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
