@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new Typed('#typed', {
         strings: [
             'Data Analyst',
-            'Software Developer',
+            'Developer',
             'Designer',
             'Machine Learning Enthusiast',
             'Tech Explorer'
