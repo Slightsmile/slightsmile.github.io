@@ -49,12 +49,12 @@ footer {
 .social-icon { color: #111827 !important; }
 .dark .social-icon { color: #fff !important; }
 /* External SVGs: black in light, white in dark */
-.social-icon-img { filter: none; transition: filter 0.3s; }
+.social-icon-img { filter: none; transition: filter 0.5s cubic-bezier(0.4,0,0.2,1); }
 .dark .social-icon-img { filter: invert(1) brightness(2); }
 /* Social link hover: fill circle with primary color, icon color unchanged */
 .social-bg:hover, .social-bg:focus {
     background-color: var(--primary) !important;
-    transition: background-color 0.3s;
+    transition: background-color 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 /* Ensure icon color stays unchanged on hover */
 .social-bg:hover .social-icon,
@@ -77,22 +77,27 @@ footer {
 body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
 main { margin-top: 2rem; }
 h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
-.fade-in { animation: fadeIn 1s ease-in-out; }
+.fade-in { animation: fadeIn 1.2s cubic-bezier(0.4,0,0.2,1); }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.slide-up { animation: slideUp 0.8s ease-out; }
+.slide-up { animation: slideUp 1.1s cubic-bezier(0.4,0,0.2,1); }
 @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .skill-box {
     width: 72px; height: 64px; min-width: 0; flex: 1 1 0;
     display: flex; align-items: center; justify-content: center;
     background: transparent; box-sizing: border-box; overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+/* Skill hover effect: scale up like Contact Me button, no bg color change */
+.skill-box:hover {
+    transform: scale(1.08);
 }
 #skills-logos {
     width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 1.5rem; box-sizing: border-box; overflow-x: auto;
+    gap: 1.5rem; box-sizing: border-box;
 }
 /* Download CV button theme-adaptive hover */
 .download-cv-btn {
-    transition: all 0.3s cubic-bezier(0.4,0,0.2,1) 300ms;
+    transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 .download-cv-btn:hover {
     background-color: var(--cv-hover-bg) !important;
@@ -103,7 +108,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
     /* Load More & Collapse button hover effect (same as Contact Me) */
     #load-more-projects,
     .collapse-btn {
-        transition: all 0.3s cubic-bezier(0.4,0,0.2,1) 300ms;
+        transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
         background-color: #4f46e5;
         color: #fff;
         border-radius: 0.5rem;
@@ -123,7 +128,7 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
 }
 .timeline-item {
     padding: 10px 40px; position: relative; width: 50%; box-sizing: border-box; margin-bottom: 20px;
-    transition: all 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 .timeline-item::after {
     content: ''; position: absolute; width: 20px; height: 20px; background-color: #4f46e5;
@@ -134,10 +139,10 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
 .left::after { right: -10px; }
 .right::after { left: -10px; }
 .skill-bar { height: 8px; background-color: #e5e7eb; border-radius: 4px; overflow: hidden; }
-.skill-progress { height: 100%; background-color: #4f46e5; width: 0; transition: width 1s ease-in-out; }
-.transition-all { transition: all 0.3s cubic-bezier(0.4,0,0.2,1) 300ms; }
+.skill-progress { height: 100%; background-color: #4f46e5; width: 0; transition: width 1.5s cubic-bezier(0.4,0,0.2,1); }
+.transition-all { transition: all 0.5s cubic-bezier(0.4,0,0.2,1); }
 .project-card {
-    transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.4,0,0.2,1); border: 1px solid rgba(0,0,0,0.1);
 }
 .project-card:hover {
     transform: translateY(-5px);
