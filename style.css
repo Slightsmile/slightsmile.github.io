@@ -26,6 +26,8 @@ footer {
     --nav-bg: rgba(255,255,255,0.8);
     --hamburger-color: #111827;
     --social-bg: #b3b3b3;
+     --cv-hover-bg: #eef2ff;
+     --cv-hover-text: #4338ca;
 }
 .dark {
     --primary: #818cf8;
@@ -38,6 +40,8 @@ footer {
     --nav-bg: rgba(17,24,39,0.8);
     --hamburger-color: #fff;
     --social-bg: #959595;
+     --cv-hover-bg: #232946;
+     --cv-hover-text: #a5b4fc;
 }
 .theme-card-bg { background-color: var(--card-bg) !important; }
 .social-bg { background-color: var(--social-bg) !important; }
@@ -61,6 +65,16 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
 #skills-logos {
     width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 1.5rem; box-sizing: border-box; overflow-x: auto;
+}
+/* Download CV button theme-adaptive hover */
+.download-cv-btn {
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1) 300ms;
+}
+.download-cv-btn:hover {
+    background-color: var(--cv-hover-bg) !important;
+    color: var(--cv-hover-text) !important;
+    border-color: var(--cv-hover-text) !important;
+    transform: scale(1.05);
 }
 .timeline { position: relative; max-width: 1200px; margin: 0 auto; }
 .timeline::after {
