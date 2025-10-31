@@ -25,6 +25,7 @@ footer {
     --card-bg: #f5f6fa;
     --nav-bg: rgba(255,255,255,0.8);
     --hamburger-color: #111827;
+    --social-bg: #b3b3b3;
 }
 .dark {
     --primary: #818cf8;
@@ -36,8 +37,16 @@ footer {
     --card-bg: #1f2937;
     --nav-bg: rgba(17,24,39,0.8);
     --hamburger-color: #fff;
+    --social-bg: #959595;
 }
 .theme-card-bg { background-color: var(--card-bg) !important; }
+.social-bg { background-color: var(--social-bg) !important; }
+/* Social icon color: black in light, white in dark */
+.social-icon { color: #111827 !important; }
+.dark .social-icon { color: #fff !important; }
+/* External SVGs: black in light, white in dark */
+.social-icon-img { filter: none; transition: filter 0.3s; }
+.dark .social-icon-img { filter: invert(1) brightness(2); }
 body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
 h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
 .fade-in { animation: fadeIn 1s ease-in-out; }
