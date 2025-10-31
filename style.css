@@ -51,6 +51,29 @@ footer {
 /* External SVGs: black in light, white in dark */
 .social-icon-img { filter: none; transition: filter 0.3s; }
 .dark .social-icon-img { filter: invert(1) brightness(2); }
+/* Social link hover: fill circle with primary color, icon color unchanged */
+.social-bg:hover, .social-bg:focus {
+    background-color: var(--primary) !important;
+    transition: background-color 0.3s;
+}
+/* Ensure icon color stays unchanged on hover */
+.social-bg:hover .social-icon,
+.social-bg:focus .social-icon {
+    color: #fff !important;
+}
+.dark .social-bg:hover .social-icon,
+.dark .social-bg:focus .social-icon {
+    color: #111827 !important;
+}
+/* In dark mode, icon is already white, so no change needed */
+.social-bg:hover .social-icon-img,
+.social-bg:focus .social-icon-img {
+    filter: brightness(0) invert(1) !important;
+}
+.dark .social-bg:hover .social-icon-img,
+.dark .social-bg:focus .social-icon-img {
+    filter: brightness(0) invert(0) !important;
+}
 body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
 h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
 .fade-in { animation: fadeIn 1s ease-in-out; }
