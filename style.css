@@ -100,6 +100,22 @@ h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
     border-color: var(--cv-hover-text) !important;
     transform: scale(1.05);
 }
+    /* Load More & Collapse button hover effect (same as Contact Me) */
+    #load-more-projects,
+    .collapse-btn {
+        transition: all 0.3s cubic-bezier(0.4,0,0.2,1) 300ms;
+        background-color: #4f46e5;
+        color: #fff;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(79,70,229,0.08);
+    }
+    #load-more-projects:hover,
+    .collapse-btn:hover {
+        background-color: #4338ca;
+        color: #fff;
+        transform: scale(1.05);
+    }
 .timeline { position: relative; max-width: 1200px; margin: 0 auto; }
 .timeline::after {
     content: ''; position: absolute; width: 2px; background-color: #cbd5e1;
