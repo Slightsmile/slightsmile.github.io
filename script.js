@@ -50,14 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const skills = [
         { name: 'C', icon: 'c' }, { name: 'C++', icon: 'cpp' }, { name: 'Java', icon: 'java' }, { name: 'Python', icon: 'python' },
         { name: 'HTML5', icon: 'html' }, { name: 'CSS', icon: 'css3' }, { name: 'JavaScript', icon: 'javascript' }, { name: 'Dart', icon: 'dart' },
-        { name: 'Flutter', icon: 'flutter' }, { name: 'FastAPI', icon: 'fastapi' }, { name: 'MySQL', icon: 'mysql' }, { name: 'PostgreSQL', icon: 'postgresql' },
-        { name: 'Git', icon: 'git' }, { name: 'Arduino', icon: 'arduino' }, { name: 'Cisco', icon: 'cisco' }, { name: 'Ubuntu', icon: 'ubuntu' },
-        { name: 'Notion', icon: 'notion' }, { name: 'Latex', icon: 'latex' }, { name: 'Figma', icon: 'figma' }, { name: 'Canva', icon: 'canva' }, { name: 'Capcut', icon: 'capcut' }
+        { name: 'Flutter', icon: 'flutter' }, { name: 'FastAPI', icon: 'fastapi' }, { name: 'MySQL', icon: 'mysql' }, { name: 'PostgreSQL', icon: 'postgresql' }, 
+        { name: 'Nginx', icon: 'nginx' }, { name: 'Systemd', icon: 'systemd' }, { name: 'Git', icon: 'git' }, { name: 'Arduino', icon: 'arduino' }, 
+        { name: 'Cisco', icon: 'cisco' }, { name: 'Ubuntu', icon: 'ubuntu' }, { name: 'Latex', icon: 'latex' }, { name: 'Notion', icon: 'notion' },
+        { name: 'Figma', icon: 'figma' }, { name: 'Canva', icon: 'canva' }, { name: 'Capcut', icon: 'capcut' }, { name: 'Google Workspace', icon: 'googleworkspace' }, { name: 'Microsoft Office', icon: 'microsoftoffice' }
     ];
     function renderSkillsRows() {
         skillsContainer.innerHTML = '';
         const isMobile = window.innerWidth <= 768;
-        const perRow = isMobile ? 5 : 7;
+        const perRow = isMobile ? 5 : 5;
         for (let i = 0; i < skills.length; i += perRow) {
             const row = document.createElement('div');
             row.className = 'flex flex-row flex-wrap justify-center items-center gap-4 w-full';
