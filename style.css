@@ -28,6 +28,7 @@ footer {
     --social-bg: #b3b3b3;
      --cv-hover-bg: #eef2ff;
      --cv-hover-text: #4338ca;
+    color-scheme: light;
 }
 .dark {
     --primary: #818cf8;
@@ -42,6 +43,7 @@ footer {
     --social-bg: #959595;
      --cv-hover-bg: #232946;
      --cv-hover-text: #a5b4fc;
+    color-scheme: dark;
 }
 .theme-card-bg { background-color: var(--card-bg) !important; }
 .social-bg { background-color: var(--social-bg) !important; }
@@ -74,7 +76,14 @@ footer {
 .dark .social-bg:focus .social-icon-img {
     filter: brightness(0) invert(0) !important;
 }
-body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+body { 
+    font-family: 'Inter', sans-serif; 
+    scroll-behavior: smooth;
+    color-scheme: light;
+}
+body.dark {
+    color-scheme: dark;
+}
 main { margin-top: 2rem; }
 h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
 .fade-in { animation: fadeIn 1.2s cubic-bezier(0.4,0,0.2,1); }
