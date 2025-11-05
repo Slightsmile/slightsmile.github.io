@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Flutter', icon: 'flutter' }, { name: 'FastAPI', icon: 'fastapi' }, { name: 'MySQL', icon: 'mysql' }, { name: 'PostgreSQL', icon: 'postgresql' }, 
         { name: 'Nginx', icon: 'nginx' }, { name: 'Systemd', icon: 'systemd' }, { name: 'Git', icon: 'git' }, { name: 'Arduino', icon: 'arduino' }, 
         { name: 'Cisco', icon: 'cisco' }, { name: 'Ubuntu', icon: 'ubuntu' }, { name: 'Latex', icon: 'latex' }, { name: 'Notion', icon: 'notion' },
-        { name: 'Figma', icon: 'figma' }, { name: 'Canva', icon: 'canva' }, { name: 'Capcut', icon: 'capcut' }, { name: 'Google Workspace', icon: 'googleworkspace' }, { name: 'Microsoft Office', icon: 'microsoftoffice' }
+        { name: 'Figma', icon: 'figma' }, { name: 'Canva', icon: 'canva' }, { name: 'Capcut', icon: 'capcut' }, { name: 'Google Workspace', icon: 'googleworkspace' }, { name: 'Microsoft 365 Copilot', icon: 'microsoft365copilot' }
     ];
     function renderSkillsRows() {
         skillsContainer.innerHTML = '';
