@@ -248,16 +248,16 @@ function renderProjects() {
         // Links (Buttons)
         if (project.links && project.links.length > 0) {
             const linksDiv = document.createElement('div');
-            linksDiv.className = 'flex gap-2 mt-auto';
+            linksDiv.className = 'flex gap-4 mt-auto justify-center w-full';
             project.links.forEach(link => {
                 const a = document.createElement('a');
                 a.href = link.url;
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
-                a.className = 'flex items-center gap-1 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow hover:bg-indigo-700 transition-colors pointer-events-auto z-20';
+                a.className = 'flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg text-base font-semibold shadow-md hover:bg-indigo-700 transition-all duration-300 pointer-events-auto z-20 hover:scale-105';
 
                 const iconName = link.label.toLowerCase() === 'github' ? 'github' : 'external-link';
-                a.innerHTML = `<i data-feather="${iconName}" class="w-4 h-4"></i> ${link.label}`;
+                a.innerHTML = `<i data-feather="${iconName}" class="w-5 h-5"></i> ${link.label}`;
                 // Prevent drag on button click
                 a.addEventListener('mousedown', (e) => e.stopPropagation());
                 a.addEventListener('touchstart', (e) => e.stopPropagation());
