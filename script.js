@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderExperience();
     renderEducation();
     renderProjects();
-    
+
     // Initialize feather icons after DOM manipulation
     if (typeof feather !== 'undefined') {
         feather.replace();
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Typed.js Animation
 function initTypedAnimation() {
     if (typeof Typed === 'undefined') return;
-    
+
     new Typed('#typed', {
         strings: ['Data Analyst', 'Developer', 'Designer', 'Machine Learning Enthusiast', 'Tech Explorer'],
         typeSpeed: CONSTANTS.TYPE_SPEED,
@@ -117,7 +117,7 @@ function initTypedAnimation() {
 // GSAP Scroll Animations
 function initScrollAnimations() {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    
+
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('section').forEach(section => {
         gsap.from(section, {
@@ -133,7 +133,7 @@ function initScrollAnimations() {
 function initBackToTop() {
     const backToTopButton = document.getElementById('back-to-top');
     if (!backToTopButton) return;
-    
+
     const handleScroll = () => {
         const show = window.pageYOffset > CONSTANTS.SCROLL_THRESHOLD;
         toggleClasses(backToTopButton, {
@@ -143,7 +143,7 @@ function initBackToTop() {
             'visible': show
         });
     };
-    
+
     window.addEventListener('scroll', debounce(handleScroll, 100), { passive: true });
     backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
@@ -152,16 +152,16 @@ function initBackToTop() {
 function renderSkills() {
     const skillsContainer = document.getElementById('skills-logos');
     if (!skillsContainer) return;
-    
+
     const renderSkillsGrid = () => {
         skillsContainer.innerHTML = '';
         const perRow = isMobile() ? CONSTANTS.SKILLS_PER_ROW_MOBILE : CONSTANTS.SKILLS_PER_ROW_DESKTOP;
-        
+
         for (let i = 0; i < DATA.skills.length; i += perRow) {
             const row = document.createElement('div');
             row.className = 'flex flex-row flex-wrap justify-center items-center gap-4 w-full';
             row.setAttribute('role', 'listitem');
-            
+
             DATA.skills.slice(i, i + perRow).forEach(skill => {
                 const logo = document.createElement('a');
                 logo.href = 'https://skills.syvixor.com';
@@ -173,11 +173,11 @@ function renderSkills() {
                 logo.innerHTML = `<img src="https://skills.syvixor.com/api/icons?i=${skill.icon}" alt="${skill.name} icon" style="width:72px;height:64px;object-fit:contain;" loading="lazy" />`;
                 row.appendChild(logo);
             });
-            
+
             skillsContainer.appendChild(row);
         }
     };
-    
+
     renderSkillsGrid();
     window.addEventListener('resize', debounce(renderSkillsGrid, 250));
 }
@@ -197,52 +197,283 @@ function renderEducation() {
 }
 
 // Projects Rendering
+// Projects Rendering - 3D Carousel
 function renderProjects() {
-    const projectsContainer = document.querySelector('#projects > div');
-    const loadMoreBtn = document.getElementById('load-more-projects');
-    if (!projectsContainer || !loadMoreBtn) return;
-    
-    let showingAllProjects = false;
-    
-    const createProjectCard = (project) => {
+    const track = document.getElementById('carousel-track');
+    const dotsContainer = document.getElementById('carousel-dots');
+
+    if (!track || !dotsContainer) return;
+
+    // State
+    let current = 0;
+    let startX = null;
+    let isDragging = false;
+    let isAutoRotating = true;
+    let autoRotateInterval;
+    const cards = [];
+
+    // Create Cards
+    DATA.projects.forEach((project, index) => {
         const card = document.createElement('div');
-        card.className = 'project-card theme-card-bg theme-text rounded-xl overflow-hidden shadow-md slide-up relative flex flex-col';
-        card.style.minHeight = '420px';
-        card.setAttribute('role', 'listitem');
-        
-        const techBadges = project.technologies.map(tech => `<span class="px-3 py-1 theme-chip text-sm rounded-full">${tech}</span>`).join('');
-        const linkButtons = project.links && project.links.length > 0
-            ? project.links.map(link => {
-                const icon = link.label.toLowerCase() === 'github' ? '<i data-feather="github" aria-hidden="true"></i>' : '<i data-feather="external-link" aria-hidden="true"></i>';
-                return `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 px-2 py-1.5 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow hover:bg-indigo-800 transition-all duration-300 whitespace-nowrap" style="min-width:56px;" aria-label="${link.label}">${icon}<span class='px-3 py-1'>${link.label}</span></a>`;
-            }).join('')
-            : '';
-        
-        card.innerHTML = `
-            <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover" loading="lazy">
-            <div class="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl font-semibold theme-heading mb-2">${project.title}</h3>
-                    <p class="theme-desc mb-4">${project.description}</p>
-                    <div class="flex flex-wrap gap-2 mb-2" style="flex-wrap: wrap; max-height: 48px; overflow: visible;">${techBadges}</div>
-                </div>
-                ${linkButtons ? `<div class="flex gap-2 mt-4">${linkButtons}</div>` : ''}
-            </div>
+        card.className = 'project-card-carousel theme-text select-none cursor-grab active:cursor-grabbing';
+
+        // Image
+        const img = document.createElement('img');
+        img.src = project.image;
+        img.alt = project.title;
+        img.className = 'w-full h-48 object-cover pointer-events-none';
+        img.loading = 'lazy';
+
+        // Content
+        const content = document.createElement('div');
+        content.className = 'p-6 flex-1 flex flex-col relative z-10';
+
+        // Title & Desc
+        content.innerHTML = `
+            <h3 class="text-xl font-semibold theme-heading mb-2 pointer-events-none">${project.title}</h3>
+            <p class="theme-desc mb-4 text-sm line-clamp-3 pointer-events-none">${project.description}</p>
         `;
-        return card;
+
+        // Tags
+        const tagsDiv = document.createElement('div');
+        tagsDiv.className = 'flex flex-wrap gap-2 mb-4 pointer-events-none';
+        project.technologies.forEach(tech => {
+            const span = document.createElement('span');
+            span.className = 'px-3 py-1 theme-chip text-xs rounded-full';
+            span.textContent = tech;
+            tagsDiv.appendChild(span);
+        });
+        content.appendChild(tagsDiv);
+
+        // Links (Buttons)
+        if (project.links && project.links.length > 0) {
+            const linksDiv = document.createElement('div');
+            linksDiv.className = 'flex gap-2 mt-auto';
+            project.links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.className = 'flex items-center gap-1 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow hover:bg-indigo-700 transition-colors pointer-events-auto z-20';
+
+                const iconName = link.label.toLowerCase() === 'github' ? 'github' : 'external-link';
+                a.innerHTML = `<i data-feather="${iconName}" class="w-4 h-4"></i> ${link.label}`;
+                // Prevent drag on button click
+                a.addEventListener('mousedown', (e) => e.stopPropagation());
+                a.addEventListener('touchstart', (e) => e.stopPropagation());
+
+                linksDiv.appendChild(a);
+            });
+            content.appendChild(linksDiv);
+        }
+
+        card.appendChild(img);
+        card.appendChild(content);
+
+        // Add subtle gradient overlay
+        const gradient = document.createElement('div');
+        gradient.className = 'absolute inset-0 bg-gradient-to-br from-blue-50/10 via-transparent to-amber-50/10 pointer-events-none';
+        card.appendChild(gradient);
+
+        track.appendChild(card);
+        cards.push(card);
+    });
+
+    // Create Dots
+    DATA.projects.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.className = `w-2 h-2 rounded-full transition-all duration-500 bg-gray-300 hover:bg-gray-400`;
+        dot.ariaLabel = `Go to project ${index + 1}`;
+        dot.addEventListener('click', () => {
+            current = index;
+            resetAutoRotate();
+            updateCarousel();
+        });
+        dotsContainer.appendChild(dot);
+    });
+
+    const updateCarousel = () => {
+        const total = cards.length;
+
+        cards.forEach((card, index) => {
+            const position = (index - current + total) % total;
+
+            // Logic derived from React component
+            // We need to map position index to transforms
+            // The React logic maps specific relative positions (0, 1, 2...) to transforms
+            // We need to find the "visual" position.
+
+            // In React: position = (index - current + length) % length
+            // If current is 0:
+            // index 0 -> pos 0 (Center)
+            // index 1 -> pos 1 (Right)
+            // index 2 -> pos 2 (Far Right)
+            // index 11 (last) -> pos 11 -> matches logic?
+            // The React positions array has 8 entries. 
+            // 0: Center
+            // 1: Right
+            // 2: Far Right
+            // 3: Left
+            // 4: Far Left
+            // 5: Extra Far Right
+            // 6: Extra Far Left
+            // 7: Hidden
+
+            // We need to map our simple circular index to these specific "slots".
+            // Let's define visual slots relative to center.
+            let visualPos = 7; // Default hidden
+            let zIndex = 0;
+            let opacity = 0;
+            let transform = '';
+            let pointerEvents = 'none';
+
+            // Center
+            if (position === 0) {
+                visualPos = 0;
+                zIndex = 50;
+                opacity = 1;
+                pointerEvents = 'auto'; // buttons clickable
+                transform = 'translateX(0) scale(1) rotateY(0deg)';
+                card.style.filter = 'none';
+            }
+            // Right 1
+            else if (position === 1) {
+                visualPos = 1;
+                zIndex = 40;
+                opacity = 0.8;
+                transform = 'translateX(350px) scale(0.85) rotateY(-15deg)';
+                card.style.filter = 'blur(1px)';
+            }
+            // Right 2
+            else if (position === 2) {
+                visualPos = 2;
+                zIndex = 30;
+                opacity = 0.6;
+                transform = 'translateX(650px) scale(0.7) rotateY(-25deg)';
+                card.style.filter = 'blur(2px)';
+            }
+            // Left 1 (last item)
+            else if (position === total - 1) {
+                visualPos = 3;
+                zIndex = 40;
+                opacity = 0.8;
+                transform = 'translateX(-350px) scale(0.85) rotateY(15deg)';
+                card.style.filter = 'blur(1px)';
+            }
+            // Left 2 (second to last)
+            else if (position === total - 2) {
+                visualPos = 4;
+                zIndex = 30;
+                opacity = 0.6;
+                transform = 'translateX(-650px) scale(0.7) rotateY(25deg)';
+                card.style.filter = 'blur(2px)';
+            }
+            // Fallback for others (hidden or far back)
+            else {
+                visualPos = 7;
+                zIndex = 10;
+                opacity = 0;
+                transform = 'translateX(0) scale(0.3) rotateY(0deg)';
+            }
+
+            // Apply mobile adjustments
+            if (window.innerWidth < 768) {
+                // Adjust translateX values for smaller screens
+                if (position === 1) transform = 'translateX(50px) scale(0.85) rotateY(-5deg) translateZ(-50px)';
+                else if (position === 2) transform = 'translateX(100px) scale(0.7) rotateY(-10deg) translateZ(-100px)';
+                else if (position === total - 1) transform = 'translateX(-50px) scale(0.85) rotateY(5deg) translateZ(-50px)';
+                else if (position === total - 2) transform = 'translateX(-100px) scale(0.7) rotateY(10deg) translateZ(-100px)';
+
+                // Stack effect for mobile
+                if (position === 1 || position === total - 1) opacity = 0.5;
+                if (position === 2 || position === total - 2) opacity = 0; // Hide further ones on mobile
+            }
+
+            card.style.transform = transform;
+            card.style.zIndex = zIndex;
+            card.style.opacity = opacity;
+            card.style.pointerEvents = pointerEvents;
+        });
+
+        // Update dots
+        const dots = dotsContainer.children;
+        Array.from(dots).forEach((dot, idx) => {
+            if (idx === current) {
+                dot.classList.add('bg-indigo-600', 'w-8');
+                dot.classList.remove('bg-gray-300');
+            } else {
+                dot.classList.remove('bg-indigo-600', 'w-8');
+                dot.classList.add('bg-gray-300');
+            }
+        });
+
+        // Re-init icons for new DOM elements if needed
+        // Removed from loop for performance
     };
-    
-    const renderProjectsGrid = (showAll = false) => {
-        projectsContainer.innerHTML = '';
-        const count = showAll ? DATA.projects.length : CONSTANTS.INITIAL_PROJECTS_COUNT;
-        DATA.projects.slice(0, count).forEach(project => projectsContainer.appendChild(createProjectCard(project)));
-        if (typeof feather !== 'undefined') feather.replace();
+
+    const handleStart = (x) => {
+        startX = x;
+        isDragging = true;
+        isAutoRotating = false;
+        clearInterval(autoRotateInterval);
     };
-    
-    renderProjectsGrid(false);
-    loadMoreBtn.addEventListener('click', () => {
-        showingAllProjects = !showingAllProjects;
-        renderProjectsGrid(showingAllProjects);
-        loadMoreBtn.textContent = showingAllProjects ? 'Collapse' : 'Load More';
+
+    const handleMove = (x) => {
+        if (!isDragging || startX === null) return;
+        const diff = x - startX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                // Swipe Right -> Prev
+                current = (current - 1 + cards.length) % cards.length;
+            } else {
+                // Swipe Left -> Next
+                current = (current + 1) % cards.length;
+            }
+            startX = null;
+            isDragging = false;
+            updateCarousel();
+            // Debounce/Wait before resuming auto? 
+            // Reset auto rotate logic
+            resetAutoRotate();
+        }
+    };
+
+    const handleEnd = () => {
+        isDragging = false;
+        startX = null;
+        resetAutoRotate();
+    };
+
+    const resetAutoRotate = () => {
+        clearInterval(autoRotateInterval);
+        isAutoRotating = true;
+        autoRotateInterval = setInterval(() => {
+            if (isAutoRotating) {
+                current = (current + 1) % cards.length;
+                updateCarousel();
+            }
+        }, 5000);
+    };
+
+    // Event Listeners
+    const container = document.querySelector('.carousel-container');
+    container.addEventListener('mousedown', (e) => handleStart(e.clientX));
+    container.addEventListener('mousemove', (e) => handleMove(e.clientX));
+    container.addEventListener('mouseup', handleEnd);
+    container.addEventListener('mouseleave', handleEnd);
+
+    container.addEventListener('touchstart', (e) => handleStart(e.touches[0].clientX), { passive: true });
+    container.addEventListener('touchmove', (e) => handleMove(e.touches[0].clientX), { passive: true });
+    container.addEventListener('touchend', handleEnd);
+
+    // Init
+    updateCarousel();
+    resetAutoRotate();
+    if (typeof feather !== 'undefined') feather.replace();
+
+    // Handle Window Resize
+    window.addEventListener('resize', () => {
+        updateCarousel();
     });
 }

@@ -53,7 +53,10 @@ body.dark {
     color-scheme: dark;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: 'Space Grotesk', sans-serif;
 }
 
@@ -68,7 +71,7 @@ main {
     background-color: var(--bg-primary) !important;
 }
 
-.theme-text, 
+.theme-text,
 .theme-heading {
     color: var(--text-primary) !important;
 }
@@ -77,7 +80,7 @@ main {
     color: var(--primary) !important;
 }
 
-.theme-meta, 
+.theme-meta,
 .theme-desc {
     color: var(--text-secondary) !important;
 }
@@ -105,8 +108,13 @@ main {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .slide-up {
@@ -118,6 +126,7 @@ main {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -330,21 +339,102 @@ footer {
     .timeline::after {
         left: 31px;
     }
-    
+
     .timeline-item {
         width: 100%;
         padding-left: 70px;
         padding-right: 25px;
         text-align: right;
     }
-    
+
     .timeline-item::after,
     .left::after,
     .right::after {
         left: 21px;
     }
-    
+
     .right {
         left: 0;
     }
+}
+
+/* =============================================================================
+   Carousel Section
+   ============================================================================= */
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+.preserve-3d {
+    transform-style: preserve-3d;
+}
+
+.project-card-carousel {
+    position: absolute;
+    /* Dimensions from reference, adjusted for responsiveness */
+    width: 80vw;
+    height: 440px;
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    /* rounded-3xl */
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+    /* Heavier shadow for depth */
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+    overflow: hidden;
+    /* Flex layout for content */
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 640px) {
+    .project-card-carousel {
+        width: 320px;
+        height: 460px;
+    }
+}
+
+@media (min-width: 768px) {
+    .project-card-carousel {
+        width: 380px;
+        height: 480px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .project-card-carousel {
+        width: 450px;
+        height: 520px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .project-card-carousel {
+        width: 480px;
+    }
+}
+
+/* Custom scrollbar for card content */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Glassmorphism details */
+.glass-icon {
+    backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass-icon {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
