@@ -170,7 +170,7 @@ function renderSkills() {
                 logo.title = skill.name;
                 logo.className = 'skill-box';
                 logo.setAttribute('aria-label', skill.name);
-                logo.innerHTML = `<img src="https://skills.syvixor.com/api/icons?i=${skill.icon}" alt="${skill.name} icon" style="width:72px;height:64px;object-fit:contain;" loading="lazy" />`;
+                logo.innerHTML = `<img src="https://skills.syvixor.com/api/icons?i=${skill.icon}" alt="${skill.name} icon" style="width:72px;height:64px;object-fit:contain;" loading="eager" />`;
                 row.appendChild(logo);
             });
 
