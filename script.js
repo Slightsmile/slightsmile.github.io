@@ -109,7 +109,7 @@ function initTypedAnimation() {
         typeSpeed: CONSTANTS.TYPE_SPEED,
         backSpeed: CONSTANTS.BACK_SPEED,
         loop: true,
-        showCursor: true,
+        showCursor: false,
         cursorChar: '|'
     });
 }
