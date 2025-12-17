@@ -47,6 +47,9 @@ body {
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
     color-scheme: light;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
 }
 
 body.dark {
@@ -372,8 +375,14 @@ footer {
 .project-card-carousel {
     position: absolute;
     /* Dimensions from reference, adjusted for responsiveness */
-    width: 80vw;
-    height: 440px;
+    width: 85vw;
+    /* Slightly wider for better content fit */
+    max-width: 340px;
+    /* Cap width for larger phones */
+    height: auto;
+    /* Allow height to fit content */
+    min-height: 480px;
+    /* Minimum height for consistency */
     background-color: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1.5rem;

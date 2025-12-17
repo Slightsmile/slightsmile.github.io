@@ -221,7 +221,7 @@ function renderProjects() {
         const img = document.createElement('img');
         img.src = project.image;
         img.alt = project.title;
-        img.className = 'w-full h-48 object-cover pointer-events-none';
+        img.className = 'w-full h-40 object-cover pointer-events-none';
         img.loading = 'lazy';
 
         // Content
