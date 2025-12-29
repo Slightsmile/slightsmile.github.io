@@ -248,7 +248,8 @@ function renderProjects() {
         // Links (Buttons)
         if (project.links && project.links.length > 0) {
             const linksDiv = document.createElement('div');
-            linksDiv.className = 'flex gap-4 mt-auto justify-center w-full';
+            // Place buttons directly under content without large vertical gap
+            linksDiv.className = 'flex gap-4 justify-center w-full';
             project.links.forEach(link => {
                 const a = document.createElement('a');
                 a.href = link.url;

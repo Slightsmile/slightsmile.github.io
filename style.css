@@ -380,9 +380,7 @@ footer {
     max-width: 340px;
     /* Cap width for larger phones */
     height: auto;
-    /* Allow height to fit content */
-    min-height: 480px;
-    /* Minimum height for consistency */
+    /* Let height fully adapt to content to avoid large gaps */
     background-color: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1.5rem;
@@ -400,21 +398,22 @@ footer {
 @media (min-width: 640px) {
     .project-card-carousel {
         width: 320px;
-        height: 460px;
+        /* Auto height for compact cards */
+        height: auto;
     }
 }
 
 @media (min-width: 768px) {
     .project-card-carousel {
         width: 380px;
-        height: 480px;
+        height: auto;
     }
 }
 
 @media (min-width: 1024px) {
     .project-card-carousel {
         width: 450px;
-        height: 520px;
+        height: auto;
     }
 }
 
