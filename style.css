@@ -379,8 +379,8 @@ footer {
     /* Slightly wider for better content fit */
     max-width: 340px;
     /* Cap width for larger phones */
-    height: auto;
-    /* Let height fully adapt to content to avoid large gaps */
+    height: 380px;
+    /* Fixed height so internal layout stays consistent */
     background-color: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1.5rem;
@@ -398,22 +398,21 @@ footer {
 @media (min-width: 640px) {
     .project-card-carousel {
         width: 320px;
-        /* Auto height for compact cards */
-        height: auto;
+        height: 400px;
     }
 }
 
 @media (min-width: 768px) {
     .project-card-carousel {
         width: 380px;
-        height: auto;
+        height: 420px;
     }
 }
 
 @media (min-width: 1024px) {
     .project-card-carousel {
         width: 450px;
-        height: auto;
+        height: 440px;
     }
 }
 
@@ -445,4 +444,18 @@ footer {
 .dark .glass-icon {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Utility: clamp long text inside cards */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Utility: limit tag rows so button always fits */
+.tag-list-clamp {
+    max-height: 3.2rem;
+    overflow: hidden;
 }
