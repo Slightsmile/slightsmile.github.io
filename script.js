@@ -276,6 +276,17 @@ function renderProjects() {
         gradient.className = 'absolute inset-0 bg-gradient-to-br from-blue-50/10 via-transparent to-amber-50/10 pointer-events-none';
         card.appendChild(gradient);
 
+        // Add click listener for "click to scroll"
+        card.addEventListener('click', (e) => {
+            if (current !== index) {
+                // If clicking a side card, scroll to it
+                e.preventDefault(); // Prevent link clicks or other defaults
+                current = index;
+                resetAutoRotate();
+                updateCarousel();
+            }
+        });
+
         track.appendChild(card);
         cards.push(card);
     });
@@ -393,7 +404,16 @@ function renderProjects() {
             card.style.transform = transform;
             card.style.zIndex = zIndex;
             card.style.opacity = opacity;
-            card.style.pointerEvents = pointerEvents;
+
+            // Set pointer events for visible cards.
+            // The card click handler (current !== index) will handle scrolling to side cards.
+            // Links inside the center card are fully interactive.
+            // Links inside side cards have stopPropagation on mousedown/touchstart to prevent accidental drag.
+            if (visualPos === 0 || visualPos === 1 || visualPos === 2 || visualPos === 3 || visualPos === 4) {
+                card.style.pointerEvents = 'auto';
+            } else {
+                card.style.pointerEvents = 'none';
+            }
         });
 
         // Update dots
