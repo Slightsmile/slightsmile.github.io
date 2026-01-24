@@ -33,9 +33,9 @@ const DATA = {
         { title: 'Salesperson', company: 'Shwapno', period: 'Apr 2019 – Jun 2019', description: 'Sales Management, Customer relationship management', position: 'left' }
     ],
     education: [
-        { degree: 'BSc. in CSE', institution: 'Daffodil International University', period: '2022 - present', description: 'GPA: 3.48/4.0', position: 'right' },
-        { degree: 'HSC (Science)', institution: 'Mohammadpur Preparatory School and College', period: '2019 - 2021', description: 'GPA: 5.0/5.0', position: 'left' },
-        { degree: 'SSC (Science)', institution: 'Dhanmondi Govt. Boys High School', period: '2009 - 2019', description: 'GPA: 4.67/5.0', position: 'right' }
+        { degree: 'BSc. in CSE', institution: 'Daffodil International University', period: '2022 - present', description: '', position: 'right' },
+        { degree: 'HSC (Science)', institution: 'Mohammadpur Preparatory School and College', period: '2019 - 2021', description: '', position: 'left' },
+        { degree: 'SSC (Science)', institution: 'Dhanmondi Govt. Boys High School', period: '2009 - 2019', description: '', position: 'right' }
     ],
     projects: [
         { title: 'Gallbladder Cancer Detection', description: 'Built a CNN-based model to classify ultrasound images.', technologies: ['Deep Learning', 'Python', 'PyTorch'], image: './images/disease.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/Gallblader-Cancer-Detection-DL' }] },
