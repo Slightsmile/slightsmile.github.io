@@ -392,18 +392,20 @@ footer {
 .project-card-carousel {
     position: absolute;
     /* Dimensions from reference, adjusted for responsiveness */
-    width: 85vw;
-    /* Slightly wider for better content fit */
-    max-width: 340px;
+    width: 90vw;
+    /* Slightly wider due to user feedback */
+    max-width: 400px;
     /* Cap width for larger phones */
-    height: 380px;
-    /* Fixed height so internal layout stays consistent */
-    background-color: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 400px;
+    /* Increased height for better content fit */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* White glass for light mode */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 1.5rem;
     /* rounded-3xl */
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
-    /* Heavier shadow for depth */
+    /* Shadow removed as per request */
     transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center center;
     overflow: hidden;
@@ -412,24 +414,31 @@ footer {
     flex-direction: column;
 }
 
+/* Dark mode overrides for glass effect */
+.dark .project-card-carousel {
+    background-color: rgba(31, 41, 55, 0.8);
+    /* Dark glass for dark mode */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 @media (min-width: 640px) {
     .project-card-carousel {
-        width: 320px;
-        height: 400px;
+        width: 400px;
+        height: 420px;
     }
 }
 
 @media (min-width: 768px) {
     .project-card-carousel {
-        width: 380px;
-        height: 420px;
+        width: 450px;
+        height: 440px;
     }
 }
 
 @media (min-width: 1024px) {
     .project-card-carousel {
-        width: 450px;
-        height: 440px;
+        width: 500px;
+        height: 460px;
     }
 }
 
