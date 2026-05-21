@@ -51,7 +51,9 @@ const DATA = {
         { title: 'Digital Door Lock', description: 'A smart digital door lock built using Arduino Nano for secure home or office access control.', technologies: ['Arduino Nano'], image: './images/lock.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/DoorLock-Arduino-Project' }] },
         { title: 'Covid-19 Prediction', description: 'Predicts COVID-19 from symptoms using machine learning and compares models for accuracy.', technologies: ['Machine Learning', 'Python', 'Scikit-learn'], image: './images/disease.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/Covid-Prediction-ML' }] },
         { title: 'Library Management System', description: 'Developed a CRUD-based desktop application for managing book borrowing/returns.', technologies: ['Python', 'Tkinter', 'PyMySQL'], image: './images/library.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/Library-MS-Project' }] },
-        { title: 'Bus Management System', description: 'Developed system for managing bus tickets and schedules.', technologies: ['Java', 'Java Swing', 'MySQL'], image: './images/bus.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/Bus-MS-Project' }] }
+        { title: 'Bus Management System', description: 'Developed system for managing bus tickets and schedules.', technologies: ['Java', 'Java Swing', 'MySQL'], image: './images/bus.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/Bus-MS-Project' }] },
+        { title: 'Grameen Pest Control', description: 'A full-stack website with a built-in CMS admin panel for a pest control service business in Bangladesh.', technologies: ['Node.js', 'HTML', 'CSS', 'JS'], image: './images/grameenpest.webp', links: [{ label: 'Live', url: 'https://grameenpestbd.com/' }] },
+        { title: 'MeetSplit', description: 'Find a date that works for everyone and split trip expenses — no signup required, fully anonymous sessions.', technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase'], image: './images/meetsplit.png', links: [{ label: 'Live', url: 'https://meetsplit.vercel.app' }] }
     ]
 };
 
