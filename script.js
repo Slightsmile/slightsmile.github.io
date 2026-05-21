@@ -27,13 +27,15 @@ const DATA = {
         { name: 'Figma', icon: 'figma' }, { name: 'Canva', icon: 'canva' }, { name: 'Capcut', icon: 'capcut' }, { name: 'Google Workspace', icon: 'googleworkspace' }, { name: 'Microsoft 365 Copilot', icon: 'microsoft365copilot' }
     ],
     experiences: [
+        { title: 'AI Solutions Developer', company: 'Daffodil Computers PLC.', period: 'May 2026 – Present', description: 'Project Management, Software Design, Programming', position: 'right' },
+        { title: 'Intern - Content & Website Management', company: 'Daffodil Computers PLC.', period: 'Jan 2026 – Apr 2026', description: 'Content Management, Website Management, ODOO ERP', position: 'left' },
         { title: 'Project Associate', company: 'Prospect Engine', period: 'Sep 2024 – Nov 2024', description: 'Data Analysis, Project Monitoring, Client Interaction', position: 'right' },
         { title: 'Scriptwriter', company: 'PC Builder Bangladesh', period: 'Aug 2023 – Oct 2023', description: 'Video Conceptualization, Content Research', position: 'left' },
         { title: 'Store Manager & Computer Operator', company: 'ShopUP', period: 'Aug 2021 – Oct 2021', description: 'Store & Maintenance Management, Auditing', position: 'right' },
         { title: 'Salesperson', company: 'Shwapno', period: 'Apr 2019 – Jun 2019', description: 'Sales Management, Customer relationship management', position: 'left' }
     ],
     education: [
-        { degree: 'BSc. in CSE', institution: 'Daffodil International University', period: '2022 - present', description: '', position: 'right' },
+        { degree: 'BSc. in CSE', institution: 'Daffodil International University', period: '2022 - 2026', description: '', position: 'right' },
         { degree: 'HSC (Science)', institution: 'Mohammadpur Preparatory School and College', period: '2019 - 2021', description: '', position: 'left' },
         { degree: 'SSC (Science)', institution: 'Dhanmondi Govt. Boys High School', period: '2009 - 2019', description: '', position: 'right' }
     ],
@@ -42,7 +44,7 @@ const DATA = {
         { title: 'Morse Decoder', description: 'Hardware project decoding Morse code into text.', technologies: ['Arduino UNO', 'C'], image: './images/morse.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/Morse-Decoder-Arduino-Project' }] },
         { title: 'DIU Transport', description: 'A modern, minimal, responsive website for DIU transport schedules.', technologies: ['HTML', 'CSS', 'JS'], image: './images/diubus.png', links: [{ label: 'Live', url: 'https://slightsmile.github.io/DIU-Transport/' }] },
         { title: 'University Network Simulator', description: 'Implementing a scalable network for a university for simulation and configuration.', technologies: ['Cisco'], image: './images/network.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/University-Network-Simulator' }] },
-        { title: 'Subtext', description: 'A secure multi-platform chat app', technologies: ['Flutter', 'Dart', 'Firebase'], image: './images/subtext.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/Subtext' }] },
+        { title: 'Subtext', description: 'A secure multi-platform chat app', technologies: ['Flutter', 'Dart', 'Firebase'], image: './images/subtext.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/Subtext' }, { label: 'Live', url: 'https://subtext-bd.vercel.app/' }] },
         { title: 'Classmate+', description: 'Student productivity app design combining tasks and organization to boost motivation and success.', technologies: ['Figma'], image: './images/classmate.png', links: [{ label: 'Live', url: 'https://www.google.com/url?q=https%3A%2F%2Fwww.figma.com%2Fproto%2FNkYm8rT7KbCRHIadk5NKIP%2FClassMate-%3Fnode-id%3D2-702%26starting-point-node-id%3D7%253A835%26t%3DizewGxjNkBLrDTdA-1&sa=D&sntz=1&usg=AOvVaw1szct3YA0-tdQ-hxRX3tSM' }] },
         { title: 'Mini SQL Interpreter', description: 'A lightweight SQL-like interpreter for querying CSV files', technologies: ['C', 'FLex', 'Bison'], image: './images/sql.png', links: [{ label: 'Github', url: 'https://github.com/Slightsmile/Mini-Sql-Interpreter' }] },
         { title: 'MemSim', description: 'Explore operating system memory management through interactive simulations and visualization.', technologies: ['HTML', 'CSS', 'JS'], image: './images/memsim.png', links: [{ label: 'Live', url: 'https://slightsmile.github.io/MemSim/' }] },
