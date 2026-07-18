@@ -1,55 +1,16 @@
-# Mohiuddin Ahmed — Portfolio
+# React + Vite
 
-Personal portfolio website for Mohiuddin Ahmed, Data Analyst, Developer, and Designer. Live at [slightsmile.github.io](https://slightsmile.github.io).
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- Animated canvas background with interactive particle effects
-- Dark/light theme toggle with persistent preference
-- Typed.js headline animation
-- GSAP scroll-triggered animations
-- Sections: Home, Skills, Experience, Education, Projects, Contact
-- Downloadable CV
-- Fully responsive layout (Tailwind CSS)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Stack
+## React Compiler
 
-| Layer | Technology |
-|---|---|
-| Markup | HTML5 |
-| Styling | Tailwind CSS (CDN) + custom `style.css` |
-| Scripting | Vanilla JS (`script.js`, `background.js`) |
-| Animations | GSAP + ScrollTrigger, Typed.js |
-| Icons | Feather Icons |
-| Components | Custom Web Components (`navbar`, `footer`, `theme-toggle`) |
-| Hosting | GitHub Pages |
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Project Structure
+## Expanding the Oxlint configuration
 
-```
-slightsmile.github.io/
-├── index.html          # Main page
-├── style.css           # Custom styles and theme variables
-├── script.js           # Page logic, section rendering, contact form
-├── background.js       # Canvas particle animation
-├── components/
-│   ├── navbar.js       # Custom navbar web component
-│   ├── footer.js       # Custom footer web component
-│   └── theme-toggle.js # Dark/light toggle component
-├── images/             # Project screenshots, profile photo, favicon
-└── CNAME               # Custom domain config (GitHub Pages)
-```
-
-## Running Locally
-
-No build step required — open `index.html` directly in a browser, or serve it with any static file server:
-
-```bash
-npx serve .
-# or
-python3 -m http.server 8080
-```
-
-## Deployment
-
-Push to the `main` branch. GitHub Pages serves the site automatically via the `CNAME` configuration.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
