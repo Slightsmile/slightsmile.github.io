@@ -22,6 +22,8 @@ export default function HomePage() {
   const [formEmail, setFormEmail] = useState('');
   const [formMessage, setFormMessage] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSending, setFormSending] = useState(false);
+  const [formError, setFormError] = useState('');
 
   const projectTrackRef = useRef(null);
   const projectPausedRef = useRef(false);
@@ -91,14 +93,25 @@ export default function HomePage() {
   }, []);
 
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
-    const subject = encodeURIComponent('Portfolio contact from ' + (formName || 'a visitor'));
-    const body = encodeURIComponent(formMessage + '\n\n— ' + formName + ' (' + formEmail + ')');
-    window.location.href = `mailto:akibh987@gmail.com?subject=${subject}&body=${body}`;
-    setFormSubmitted(true);
+    setFormSending(true);
+    setFormError('');
+    try {
+      const res = await fetch('https://formspree.io/f/xlgqpkwg', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(e.target),
+      });
+      if (!res.ok) throw new Error('Submission failed');
+      setFormSubmitted(true);
+    } catch {
+      setFormError("Couldn't send your message. Please try again or email akibh987@gmail.com directly.");
+    } finally {
+      setFormSending(false);
+    }
   };
-  const resetForm = () => { setFormSubmitted(false); setFormName(''); setFormEmail(''); setFormMessage(''); };
+  const resetForm = () => { setFormSubmitted(false); setFormError(''); setFormName(''); setFormEmail(''); setFormMessage(''); };
 
   const filteredSkillCategories = skillFilter === 'all' ? SKILLS_DATA : SKILLS_DATA.filter((c) => c.id === skillFilter);
 
@@ -403,20 +416,22 @@ export default function HomePage() {
             {formSubmitted ? (
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 14, textAlign: 'center', padding: '40px 20px' }}>
                 <CheckCircle size={44} weight="fill" color="#4ADE80" />
-                <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 19, color: 'var(--text-primary)', fontWeight: 600 }}>Your email client is opening</div>
-                <div style={{ fontSize: 13.5, color: 'var(--text-secondary)' }}>If it didn't, just email akibh987@gmail.com directly.</div>
+                <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 19, color: 'var(--text-primary)', fontWeight: 600 }}>Message sent</div>
+                <div style={{ fontSize: 13.5, color: 'var(--text-secondary)' }}>Thanks for reaching out — I'll get back to you soon.</div>
                 <button onClick={resetForm} className="__cta-secondary" style={{ background: 'var(--surface-faint-4)', color: 'var(--text-primary)', padding: '13px 26px', borderRadius: 100, textDecoration: 'none', fontSize: 14.5, fontWeight: 600, border: '1px solid var(--border-stronger)', marginTop: 10, cursor: 'pointer', transition: 'transform 0.2s ease, background 0.2s ease' }}>Send another</button>
               </div>
             ) : (
               <form onSubmit={onFormSubmit}>
                 <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 17, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 20 }}>Send a message</div>
                 <label style={{ display: 'block', fontSize: 12, color: 'var(--text-tertiary)', marginBottom: 6, marginTop: 16 }}>Name</label>
-                <input required value={formName} onChange={(e) => setFormName(e.target.value)} placeholder="Your name" style={{ width: '100%', padding: '12px 14px', borderRadius: 10, background: 'var(--surface-faint-2)', border: '1px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: 14, fontFamily: "'Inter',sans-serif", outline: 'none' }} />
+                <input required name="name" value={formName} onChange={(e) => setFormName(e.target.value)} placeholder="Your name" style={{ width: '100%', padding: '12px 14px', borderRadius: 10, background: 'var(--surface-faint-2)', border: '1px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: 14, fontFamily: "'Inter',sans-serif", outline: 'none' }} />
                 <label style={{ display: 'block', fontSize: 12, color: 'var(--text-tertiary)', marginBottom: 6, marginTop: 16 }}>Email</label>
-                <input required type="email" value={formEmail} onChange={(e) => setFormEmail(e.target.value)} placeholder="you@company.com" style={{ width: '100%', padding: '12px 14px', borderRadius: 10, background: 'var(--surface-faint-2)', border: '1px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: 14, fontFamily: "'Inter',sans-serif", outline: 'none' }} />
+                <input required type="email" name="email" value={formEmail} onChange={(e) => setFormEmail(e.target.value)} placeholder="you@company.com" style={{ width: '100%', padding: '12px 14px', borderRadius: 10, background: 'var(--surface-faint-2)', border: '1px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: 14, fontFamily: "'Inter',sans-serif", outline: 'none' }} />
                 <label style={{ display: 'block', fontSize: 12, color: 'var(--text-tertiary)', marginBottom: 6, marginTop: 16 }}>Message</label>
-                <textarea required value={formMessage} onChange={(e) => setFormMessage(e.target.value)} placeholder="What are we building?" rows={4} style={{ width: '100%', padding: '12px 14px', borderRadius: 10, background: 'var(--surface-faint-2)', border: '1px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: 14, fontFamily: "'Inter',sans-serif", outline: 'none', resize: 'vertical' }}></textarea>
-                <button type="submit" className="__cta-primary" style={{ width: '100%', background: accent, color: 'var(--text-on-accent)', padding: '13px 26px', borderRadius: 10, border: 'none', fontSize: 14.5, fontWeight: 700, marginTop: 22, cursor: 'pointer', fontFamily: "'Inter',sans-serif", display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}>Contact Me <ArrowRight size={16} weight="bold" /></button>
+                <textarea required name="message" value={formMessage} onChange={(e) => setFormMessage(e.target.value)} placeholder="What are we building?" rows={4} style={{ width: '100%', padding: '12px 14px', borderRadius: 10, background: 'var(--surface-faint-2)', border: '1px solid var(--border-strong)', color: 'var(--text-primary)', fontSize: 14, fontFamily: "'Inter',sans-serif", outline: 'none', resize: 'vertical' }}></textarea>
+                <input type="hidden" name="_subject" value={'Portfolio contact from ' + (formName || 'a visitor')} />
+                {formError && <div style={{ fontSize: 13, color: '#F87171', marginTop: 14 }}>{formError}</div>}
+                <button type="submit" disabled={formSending} className="__cta-primary" style={{ width: '100%', background: accent, color: 'var(--text-on-accent)', padding: '13px 26px', borderRadius: 10, border: 'none', fontSize: 14.5, fontWeight: 700, marginTop: 22, cursor: formSending ? 'default' : 'pointer', opacity: formSending ? 0.7 : 1, fontFamily: "'Inter',sans-serif", display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, transition: 'transform 0.2s ease, box-shadow 0.2s ease' }}>{formSending ? 'Sending…' : <>Contact Me <ArrowRight size={16} weight="bold" /></>}</button>
               </form>
             )}
           </div>
