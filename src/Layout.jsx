@@ -27,6 +27,7 @@ export default function Layout() {
   const [paletteQuery, setPaletteQuery] = useState('');
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
   const [isDesktop, setIsDesktop] = useState(false);
+  const [cursorVisible, setCursorVisible] = useState(false);
   const [theme, setTheme] = useState(() => {
     if (typeof window === 'undefined') return 'dark';
     const saved = window.localStorage.getItem('theme');
@@ -125,10 +126,17 @@ export default function Layout() {
       if (cursorDotRef.current) cursorDotRef.current.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
       if (cursorRingRef.current) cursorRingRef.current.style.transform = `translate(${e.clientX - 18}px, ${e.clientY - 18}px)`;
       setMouse({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
+      setCursorVisible(true);
     };
+    const onMouseLeave = () => setCursorVisible(false);
+    const onMouseEnter = () => setCursorVisible(true);
     window.addEventListener('mousemove', onMouseMove);
+    document.documentElement.addEventListener('mouseleave', onMouseLeave);
+    document.documentElement.addEventListener('mouseenter', onMouseEnter);
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
+      document.documentElement.removeEventListener('mouseleave', onMouseLeave);
+      document.documentElement.removeEventListener('mouseenter', onMouseEnter);
       document.documentElement.classList.remove('__has-custom-cursor');
     };
   }, []);
@@ -203,16 +211,18 @@ export default function Layout() {
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 22,
         opacity: loading ? 1 : 0, pointerEvents: loading ? 'auto' : 'none', transition: 'opacity 0.4s ease',
       }}>
-        <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 15, letterSpacing: '0.35em', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Mohiuddin Ahmed Akib</div>
-        <div style={{ width: 220, height: 2, background: 'var(--border)', borderRadius: 2, overflow: 'hidden', position: 'relative' }}>
-          <div style={{ position: 'absolute', left: 0, top: 0, height: '100%', width: loadPercent + '%', background: `linear-gradient(90deg, ${accent}, var(--accent-light))`, transition: 'width 0.2s ease' }}></div>
+        <div style={{ position: 'relative', width: 96, height: 96 }}>
+          <img src="/images/logo.png" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: 0.15 }} />
+          <div style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: loadPercent + '%', overflow: 'hidden', transition: 'height 0.2s ease' }}>
+            <img src="/images/logo.png" alt="Mohiuddin Ahmed Akib" style={{ position: 'absolute', left: 0, bottom: 0, width: 96, height: 96, objectFit: 'contain' }} />
+          </div>
         </div>
-        <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, color: 'var(--accent)' }}>{loadPercent}%</div>
+        <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 15, letterSpacing: '0.35em', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Mohiuddin Ahmed Akib</div>
       </div>
 
       {/* CUSTOM CURSOR */}
-      <div ref={cursorDotRef} style={{ position: 'fixed', top: 0, left: 0, width: 8, height: 8, borderRadius: '50%', background: 'var(--text-primary)', pointerEvents: 'none', zIndex: 2147483646, display: isDesktop ? 'block' : 'none', transition: 'transform 0.05s linear' }}></div>
-      <div ref={cursorRingRef} style={{ position: 'fixed', top: 0, left: 0, width: 36, height: 36, borderRadius: '50%', border: `1px solid ${accent}`, pointerEvents: 'none', zIndex: 2147483646, display: isDesktop ? 'block' : 'none', transition: 'transform 0.12s ease-out' }}></div>
+      <div ref={cursorDotRef} style={{ position: 'fixed', top: 0, left: 0, width: 8, height: 8, borderRadius: '50%', background: 'var(--text-primary)', pointerEvents: 'none', zIndex: 2147483646, display: isDesktop && cursorVisible ? 'block' : 'none', transition: 'transform 0.05s linear' }}></div>
+      <div ref={cursorRingRef} style={{ position: 'fixed', top: 0, left: 0, width: 36, height: 36, borderRadius: '50%', border: `1px solid ${accent}`, pointerEvents: 'none', zIndex: 2147483646, display: isDesktop && cursorVisible ? 'block' : 'none', transition: 'transform 0.12s ease-out' }}></div>
 
       {/* SCROLL PROGRESS */}
       <div style={{ position: 'fixed', top: 0, left: 0, height: 3, background: 'linear-gradient(90deg,var(--accent),var(--accent-light))', zIndex: 9998, transition: 'width 0.1s linear', width: scrollProgressPct + '%' }}></div>
