@@ -284,7 +284,7 @@ export default function HomePage() {
             maskImage: 'linear-gradient(90deg, transparent, black 4%, black 96%, transparent)',
             WebkitMaskImage: 'linear-gradient(90deg, transparent, black 4%, black 96%, transparent)',
           }}>
-          {[...PROJECTS_DATA, ...PROJECTS_DATA].map((p, i) => (
+          {[...PROJECTS_DATA, ...PROJECTS_DATA].reverse().map((p, i) => (
             <div key={p.id + '-' + i} className="__project-card" style={{
               background: 'linear-gradient(180deg, var(--surface-strong), var(--surface-soft))',
               border: '1px solid var(--border)', borderRadius: 16, overflow: 'hidden',

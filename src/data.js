@@ -120,6 +120,15 @@ export const GALLERY_DATA = [
   { type: 'video', title: 'Scripted video for PC Builder Bangladesh', org: 'PC Builder Bangladesh', period: null, videoUrl: 'https://youtu.be/FqKBsxinaWk?si=WnCJrpPYY0lyvl0r', image: 'https://img.youtube.com/vi/FqKBsxinaWk/hqdefault.jpg' },
   { type: 'video', title: 'Scripted video for PC Builder Bangladesh', org: 'PC Builder Bangladesh', period: null, videoUrl: 'https://www.youtube.com/watch?v=ffIEsYUYw18', image: 'https://img.youtube.com/vi/ffIEsYUYw18/hqdefault.jpg' },
   { type: 'video', title: 'Scripted short for PC Builder Bangladesh', org: 'PC Builder Bangladesh', period: null, videoUrl: 'https://youtube.com/shorts/owNya2KeoLQ?si=fqo_29gNm6p57XuM', image: 'https://img.youtube.com/vi/owNya2KeoLQ/hqdefault.jpg' },
+  { type: 'video', title: 'Meme Edit', org: 'Video Recorded & Edited', period: null, videoUrl: 'https://www.facebook.com/reel/4347611005472724' },
+  { type: 'video', title: 'Headphone Product Showcase', org: 'Video Recorded & Edited', period: null, videoUrl: 'https://www.facebook.com/reel/934689925696142' },
+  { type: 'video', title: 'Cleaning Robot Product Showcase', org: 'Video Recorded & Edited', period: null, videoUrl: 'https://www.facebook.com/share/r/186PKuUVLy/' },
+  { type: 'video', title: 'Happy Customer Video', org: 'Video Recorded & Edited', period: null, videoUrl: 'https://www.facebook.com/share/r/1c8iTECdZr/' },
+  { type: 'video', title: 'PC Build Video', org: 'Video Recorded & Edited', period: null, videoUrl: 'https://www.facebook.com/reel/1462714932098903' },
+  { type: 'video', title: 'PC Servicing Video', org: 'Video Recorded & Edited', period: null, videoUrl: 'https://www.facebook.com/reel/3140655312774280' },
+  { type: 'video', title: 'Cleaning Robot Product Showcase', org: 'Video Recorded & Edited', period: null, videoUrl: 'https://www.facebook.com/reel/1268447011502498' },
+  { type: 'video', title: 'DDIEXPO Presentation', org: 'I Presented', period: null, videoUrl: 'https://www.facebook.com/share/v/1D146xrtfD/' },
+  { type: 'video', title: 'Robotics Products Selling Presentation', org: 'I Presented', period: null, videoUrl: 'https://www.facebook.com/share/r/1aTsFMtX6U/' },
   { type: 'design', title: 'Design work', org: null, period: null, image: '/images/designs/637508891_1233863005601663_3586567500686506301_n.jpg' },
   { type: 'design', title: 'Design work', org: null, period: null, image: '/images/designs/656013611_1255431110111519_6000395366174136010_n.jpg' },
   { type: 'design', title: 'Design work', org: null, period: null, image: '/images/designs/671299250_1275047561483207_209380165228994969_n.jpg' },
@@ -139,7 +148,7 @@ export const GALLERY_DATA = [
 export const GALLERY_ROWS = [
   { type: 'certificate', label: 'Certificates', desc: 'Courses and contests completed, credentials earned.' },
   { type: 'competition', label: 'Competitions', desc: 'Participated in DIU Accelerator Cup as a contestant.' },
-  { type: 'video', label: 'Scriptwritten Videos', desc: 'Wrote scripts for and appeared in PC Builder Bangladesh videos.' },
+  { type: 'video', label: 'Videos', desc: 'Scriptwritten videos, recorded & edited work, and presentations.' },
   { type: 'design', label: 'Designed Professionally', desc: 'Graphics and visual design work.' },
 ];
 

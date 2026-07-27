@@ -126,8 +126,8 @@ export default function GallerySection({ accent, register, revealed, eyebrow = '
                       {isVideo ? (
                         <a href={g.videoUrl} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'block', cursor: 'pointer' }}>
                           <div style={{ height: 170, position: 'relative', background: 'var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid var(--border-soft)' }}>
-                            <img src={g.image} alt={g.title} loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-                              onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                            {g.image && <img src={g.image} alt={g.title} loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                              onError={(e) => { e.currentTarget.style.display = 'none'; }} />}
                             <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.15)' }}>
                               <PlayCircle size={40} weight="fill" color="rgba(255,255,255,0.9)" />
                             </div>
