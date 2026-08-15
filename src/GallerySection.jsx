@@ -61,7 +61,7 @@ export default function GallerySection({ accent, register, revealed, eyebrow = '
                             transform: `rotate(${rot}deg)`, zIndex: stackItems.length - i,
                             background: 'var(--bg-elevated)',
                           }}>
-                            <img src={g.image} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            <img src={g.image} alt="" loading="lazy" decoding="async" width="78" height="78" style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                               onError={(e) => { e.currentTarget.style.opacity = 0; }} />
                             {g.type === 'video' && (
                               <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.2)' }}>
@@ -100,7 +100,7 @@ export default function GallerySection({ accent, register, revealed, eyebrow = '
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 20, padding: 24 }}>
                 {lightboxItems.map((g, i) => (
                   <button key={g.title + i} onClick={() => setZoomedImage(g)} className="__gallery-zoomable" style={{ borderRadius: 16, overflow: 'hidden', background: 'var(--bg-elevated)', border: 'none', padding: 0, cursor: 'zoom-in', display: 'block', width: '100%' }}>
-                    <img src={g.image} alt={g.title} loading="lazy" style={{ width: '100%', height: 'auto', display: 'block' }}
+                    <img src={g.image} alt={g.title} loading="lazy" decoding="async" width="340" height="240" style={{ width: '100%', height: 'auto', display: 'block' }}
                       onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                   </button>
                 ))}
@@ -109,7 +109,7 @@ export default function GallerySection({ accent, register, revealed, eyebrow = '
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16, padding: 24 }}>
                 {lightboxItems.map((g, i) => (
                   <button key={g.title + i} onClick={() => setZoomedImage(g)} className="__gallery-zoomable" style={{ borderRadius: 14, overflow: 'hidden', background: 'var(--bg-elevated)', border: 'none', padding: 0, cursor: 'zoom-in', display: 'block', width: '100%' }}>
-                    <img src={g.image} alt={g.title} loading="lazy" style={{ width: '100%', height: 'auto', display: 'block' }}
+                    <img src={g.image} alt={g.title} loading="lazy" decoding="async" width="220" height="220" style={{ width: '100%', height: 'auto', display: 'block' }}
                       onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                   </button>
                 ))}
@@ -126,8 +126,8 @@ export default function GallerySection({ accent, register, revealed, eyebrow = '
                       {isVideo ? (
                         <a href={g.videoUrl} target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'block', cursor: 'pointer' }}>
                           <div style={{ height: 170, position: 'relative', background: 'var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid var(--border-soft)' }}>
-                            {g.image && <img src={g.image} alt={g.title} loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-                              onError={(e) => { e.currentTarget.style.display = 'none'; }} />}
+{g.image && <img src={g.image} alt={g.title} loading="lazy" decoding="async" width="260" height="170" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                                onError={(e) => { e.currentTarget.style.display = 'none'; }} />}
                             <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.15)' }}>
                               <PlayCircle size={40} weight="fill" color="rgba(255,255,255,0.9)" />
                             </div>
@@ -136,7 +136,7 @@ export default function GallerySection({ accent, register, revealed, eyebrow = '
                       ) : (
                         <button onClick={() => setZoomedImage(g)} className="__gallery-zoomable" style={{ border: 'none', padding: 0, width: '100%', display: 'block', cursor: 'zoom-in', background: 'transparent' }}>
                           <div style={{ height: 170, position: 'relative', background: 'var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid var(--border-soft)' }}>
-                            <img src={g.image} alt={g.title} loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                            <img src={g.image} alt={g.title} loading="lazy" decoding="async" width="260" height="170" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
                               onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                           </div>
                         </button>
@@ -161,7 +161,7 @@ export default function GallerySection({ accent, register, revealed, eyebrow = '
           <button onClick={() => setZoomedImage(null)} aria-label="Close" style={{ position: 'fixed', top: 24, right: 24, width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 1 }}>
             <X size={20} weight="bold" />
           </button>
-          <img src={zoomedImage.image} alt={zoomedImage.title} onClick={(e) => e.stopPropagation()} style={{ maxWidth: '100%', maxHeight: '92vh', width: 'auto', height: 'auto', borderRadius: 8, boxShadow: '0 40px 100px rgba(0,0,0,0.7)', cursor: 'default' }} />
+          <img src={zoomedImage.image} alt={zoomedImage.title} onClick={(e) => e.stopPropagation()} decoding="async" style={{ maxWidth: '100%', maxHeight: '92vh', width: 'auto', height: 'auto', borderRadius: 8, boxShadow: '0 40px 100px rgba(0,0,0,0.7)', cursor: 'default' }} />
         </div>
       )}
     </>

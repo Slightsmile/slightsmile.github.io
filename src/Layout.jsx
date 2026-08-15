@@ -8,6 +8,18 @@ import {
   NAV_ITEMS, DOCK_LINKS, PALETTE_ITEMS,
 } from './data';
 
+const THROTTLE_MS = 100;
+
+function throttle(fn, ms) {
+  let last = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - last < ms) return;
+    last = now;
+    return fn.apply(this, args);
+  };
+}
+
 const ACCENT = 'var(--accent)';
 
 export default function Layout() {
@@ -71,12 +83,12 @@ export default function Layout() {
 
   // scroll handling
   useEffect(() => {
-    const onScroll = () => {
+    const onScroll = throttle(() => {
       const y = window.scrollY;
       const max = document.documentElement.scrollHeight - window.innerHeight;
       setScrollProgressPct(max > 0 ? Math.min(100, (y / max) * 100) : 0);
       setNavScrolled(y > 40);
-    };
+    }, THROTTLE_MS);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
@@ -122,15 +134,15 @@ export default function Layout() {
     setIsDesktop(desktop);
     if (!desktop) return;
     document.documentElement.classList.add('__has-custom-cursor');
-    const onMouseMove = (e) => {
+    const onMouseMove = throttle((e) => {
       if (cursorDotRef.current) cursorDotRef.current.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
       if (cursorRingRef.current) cursorRingRef.current.style.transform = `translate(${e.clientX - 18}px, ${e.clientY - 18}px)`;
       setMouse({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
       setCursorVisible(true);
-    };
+    }, 32);
     const onMouseLeave = () => setCursorVisible(false);
     const onMouseEnter = () => setCursorVisible(true);
-    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
     document.documentElement.addEventListener('mouseleave', onMouseLeave);
     document.documentElement.addEventListener('mouseenter', onMouseEnter);
     return () => {
@@ -212,9 +224,9 @@ export default function Layout() {
         opacity: loading ? 1 : 0, pointerEvents: loading ? 'auto' : 'none', transition: 'opacity 0.4s ease',
       }}>
         <div style={{ position: 'relative', width: 96, height: 96 }}>
-          <img src="/images/logo.png" alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: 0.15 }} />
+          <img src="/images/logo.png" alt="" width="96" height="96" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', opacity: 0.15 }} />
           <div style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: loadPercent + '%', overflow: 'hidden', transition: 'height 0.2s ease' }}>
-            <img src="/images/logo.png" alt="Mohiuddin Ahmed Akib" style={{ position: 'absolute', left: 0, bottom: 0, width: 96, height: 96, objectFit: 'contain' }} />
+            <img src="/images/logo.png" alt="Mohiuddin Ahmed Akib" width="96" height="96" style={{ position: 'absolute', left: 0, bottom: 0, width: 96, height: 96, objectFit: 'contain' }} />
           </div>
         </div>
         <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 15, letterSpacing: '0.35em', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Mohiuddin Ahmed Akib</div>
@@ -229,11 +241,11 @@ export default function Layout() {
 
       {/* ANIMATED BACKGROUND */}
       <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
-        <div style={{ position: 'absolute', top: '-10%', left: '-5%', width: 520, height: 520, borderRadius: '50%', background: 'radial-gradient(circle,rgba(59,130,246,0.28),transparent 70%)', filter: 'blur(40px)', animation: 'blobMove1 22s ease-in-out infinite' }}></div>
-        <div style={{ position: 'absolute', bottom: '-15%', right: '-8%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(96,165,250,0.22),transparent 70%)', filter: 'blur(50px)', animation: 'blobMove2 26s ease-in-out infinite' }}></div>
-        <div style={{ position: 'absolute', top: '35%', right: '15%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle,rgba(59,130,246,0.14),transparent 70%)', filter: 'blur(45px)', animation: 'blobMove3 30s ease-in-out infinite' }}></div>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)', backgroundSize: '48px 48px', maskImage: 'radial-gradient(ellipse 80% 60% at 50% 20%, black, transparent)' }}></div>
-        <div style={{ position: 'absolute', top: (mouse.y * 100) + '%', left: (mouse.x * 100) + '%', width: 600, height: 600, marginLeft: -300, marginTop: -300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(59,130,246,0.06), transparent 70%)', transition: 'top 0.3s ease-out, left 0.3s ease-out' }}></div>
+        <div style={{ position: 'absolute', top: '-10%', left: '-5%', width: 520, height: 520, borderRadius: '50%', background: 'radial-gradient(circle,rgba(59,130,246,0.28),transparent 70%)', filter: 'blur(40px)', animation: 'blobMove1 22s ease-in-out infinite', willChange: 'transform' }}></div>
+        <div style={{ position: 'absolute', bottom: '-15%', right: '-8%', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(96,165,250,0.22),transparent 70%)', filter: 'blur(50px)', animation: 'blobMove2 26s ease-in-out infinite', willChange: 'transform' }}></div>
+        <div style={{ position: 'absolute', top: '35%', right: '15%', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle,rgba(59,130,246,0.14),transparent 70%)', filter: 'blur(45px)', animation: 'blobMove3 30s ease-in-out infinite', willChange: 'transform' }}></div>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)', backgroundSize: '48px 48px', maskImage: 'radial-gradient(ellipse 80% 60% at 50% 20%, black, transparent)', WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 20%, black, transparent)' }}></div>
+        <div style={{ position: 'absolute', top: (mouse.y * 100) + '%', left: (mouse.x * 100) + '%', width: 600, height: 600, marginLeft: -300, marginTop: -300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(59,130,246,0.06), transparent 70%)', transition: 'top 0.3s ease-out, left 0.3s ease-out', willChange: 'left, top' }}></div>
       </div>
 
       {/* NAVBAR */}

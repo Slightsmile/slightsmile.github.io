@@ -146,7 +146,7 @@ export default function HomePage() {
           <div style={{ position: 'absolute', width: 380, height: 380, borderRadius: '50%', border: '1px dashed rgba(59,130,246,0.25)', animation: 'spin360 40s linear infinite' }}></div>
           <div style={{ position: 'relative', height: '100%', maxWidth: '100%', animation: 'floatY 7s ease-in-out infinite' }}>
             <div {...tiltHandlers('hero-photo')} style={{ position: 'relative', height: '100%', maxWidth: '100%', aspectRatio: '3072 / 5504', borderRadius: 28, background: 'var(--surface)', border: '1px solid var(--border-strong)', backdropFilter: 'blur(14px)', overflow: 'hidden', ...tiltStyle('hero-photo') }}>
-              <img src="/images/portfolio.png" alt="Mohiuddin Ahmed Akib" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <img src="/images/portfolio.png" alt="Mohiuddin Ahmed Akib" width="3072" height="5504" fetchpriority="high" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
           </div>
         </div>
@@ -194,7 +194,7 @@ export default function HomePage() {
         </div>
         <div className="__about-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,0.85fr) minmax(0,1.15fr)', gap: 50, alignItems: 'start' }}>
           <div {...tiltHandlers('about-photo')} style={{ position: 'relative', borderRadius: 24, overflow: 'hidden', border: '1px solid var(--border-strong)', aspectRatio: '4 / 5', ...tiltStyle('about-photo') }}>
-            <img src="/images/about speech mohiuddin.png" alt="Mohiuddin Ahmed Akib speaking at an event" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src="/images/about speech mohiuddin.png" alt="Mohiuddin Ahmed Akib speaking at an event" width="600" height="750" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
           <div>
             <p style={{ fontSize: 15.5, color: 'var(--text-secondary)', lineHeight: 1.75, marginBottom: 18 }}>AI Solution Developer with experience building AI-powered SaaS platforms, enterprise web applications, and intelligent automation systems. Skilled in various programming languages with hands-on projects in machine learning and deep learning. Looking to contribute to innovative software solutions and grow in a challenging environment.</p>
@@ -294,7 +294,7 @@ export default function HomePage() {
             }}>
               <Link to="/projects" draggable={false} style={{ textDecoration: 'none', display: 'block' }}>
                 <div style={{ height: 120, flexShrink: 0, position: 'relative', background: 'repeating-linear-gradient(135deg, rgba(59,130,246,0.06) 0px, rgba(59,130,246,0.06) 2px, transparent 2px, transparent 14px), var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid var(--border-soft)' }}>
-                  <img src={p.image} alt={p.title} loading="lazy" draggable={false} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
+                  <img src={p.image} alt={p.title} loading="lazy" decoding="async" draggable={false} width="260" height="120" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
                     onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'flex'; }} />
                   <span style={{ display: 'none', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: 'var(--text-quaternary)', letterSpacing: '0.04em', textAlign: 'center', padding: '0 14px' }}>{p.title.toUpperCase()} PREVIEW</span>
                 </div>

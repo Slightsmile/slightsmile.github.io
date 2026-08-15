@@ -1,5 +1,8 @@
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; text-rendering: optimizeSpeed; }
+img { content-visibility: auto; }
+
+section[data-screen-label] { content-visibility: auto; contain-intrinsic-size: auto 500px; }
 
 :root, [data-theme="dark"] {
   --bg: #030712;
@@ -115,8 +118,8 @@ body {
 .__skill-pill:hover { color: var(--text-primary) !important; border-color: rgba(59,130,246,0.35) !important; box-shadow: 0 20px 40px rgba(0,0,0,0.25); transform: translateY(-4px); }
 .__tech-pill { box-shadow: 0 0 0 rgba(59,130,246,0); }
 .__tech-pill:hover { border-color: rgba(59,130,246,0.35) !important; color: var(--text-primary) !important; box-shadow: 0 20px 40px rgba(0,0,0,0.25); transform: translateY(-4px); }
-.__marquee-track-forward { animation: marqueeScroll 42s linear infinite; }
-.__marquee-track-reverse { animation: marqueeScrollReverse 42s linear infinite; }
+.__marquee-track-forward { animation: marqueeScroll 42s linear infinite; will-change: transform; }
+.__marquee-track-reverse { animation: marqueeScrollReverse 42s linear infinite; will-change: transform; }
 .__marquee-row:hover .__marquee-track { animation-play-state: paused; }
 .__cta-primary:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.25), 0 12px 30px rgba(59,130,246,0.45) !important; border-color: rgba(59,130,246,0.35) !important; }
 .__cta-primary:active { transform: translateY(0) scale(0.98); }
@@ -129,7 +132,7 @@ body {
 .__gallery-zoomable img { transition: transform 0.3s ease, filter 0.3s ease; }
 .__gallery-zoomable:hover img { transform: scale(1.05); filter: brightness(1.08); }
 
-.__project-scroll { scrollbar-width: none; }
+.__project-scroll { scrollbar-width: none; contain: layout style; }
 .__project-scroll::-webkit-scrollbar { display: none; }
 .__project-scroll:active { cursor: grabbing; }
 .__dock-link:hover { color: var(--text-primary) !important; background: rgba(59,130,246,0.15) !important; transform: translateY(-4px); }
@@ -168,4 +171,14 @@ body {
   }
   .__timeline-line { left: 12px !important; }
   .__timeline-dot { left: 0 !important; right: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .__marquee-track-forward, .__marquee-track-reverse { animation: none !important; }
 }

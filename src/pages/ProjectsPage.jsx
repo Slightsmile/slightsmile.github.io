@@ -58,7 +58,7 @@ export default function ProjectsPage() {
                 boxShadow: (tilt.rx || tilt.ry) ? '0 20px 40px rgba(0,0,0,0.4)' : '0 8px 20px rgba(0,0,0,0.2)',
               }}>
               <div style={{ height: 160, flexShrink: 0, position: 'relative', background: 'repeating-linear-gradient(135deg, rgba(59,130,246,0.06) 0px, rgba(59,130,246,0.06) 2px, transparent 2px, transparent 14px), var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid var(--border-soft)' }}>
-                <img src={p.image} alt={p.title} loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                <img src={p.image} alt={p.title} loading="lazy" decoding="async" width="320" height="160" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
                   onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'flex'; }} />
                 <span style={{ display: 'none', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: 'var(--text-quaternary)', letterSpacing: '0.04em', textAlign: 'center', padding: '0 14px' }}>{p.title.toUpperCase()} PREVIEW</span>
               </div>
