@@ -9,8 +9,7 @@ export const NAV_ITEMS = [
 export const TYPED_WORDS = ['Full-Stack Developer', 'Data Analyst', 'Machine Learning Enthusiast', 'Designer', 'Tech Explorer'];
 
 export const TIMELINE_DATA = [
-  { type: 'WORK', period: 'May 2026 — Present', title: 'AI Solution Developer', org: 'Daffodil Computers PLC', desc: 'Project management, software design and programming for internal AI solutions.' },
-  { type: 'WORK', period: 'Jan — Apr 2026', title: 'Intern, Designing & Content', org: 'Daffodil Computers PLC', desc: 'Website management, ODOO (ERP) administration, graphics design, and video editing.' },
+  { type: 'WORK', period: 'March 2026 — August 2026', title: 'AI Solution Developer', org: 'Daffodil Computers PLC', desc: 'Project management, software design and programming for internal AI solutions.' },
   { type: 'EDU', period: '2022 — 2026', title: 'BSc, Computer Science & Engineering', org: 'Daffodil International University · GPA 3.52/4.0', desc: 'Research & Innovation Project: 16-model deep-learning ensemble for gallbladder cancer detection.' },
   { type: 'WORK', period: 'Aug — Oct 2023', title: 'Scriptwriter', org: 'PC Builder Bangladesh', desc: 'Video conceptualization and content research for a tech media outlet.' },
   { type: 'WORK', period: 'Aug — Oct 2021', title: 'Store Manager & Computer Operator', org: 'ShopUp', desc: 'Store and maintenance management, auditing.' },

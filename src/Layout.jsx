@@ -66,18 +66,49 @@ export default function Layout() {
     transition.ready.catch(() => {});
   }, [theme]);
 
-  // loading screen (only once per session)
+  // loading screen (only once per session) — preloads critical images
   useEffect(() => {
     if (window.__hasLoadedOnce) return;
+    const criticalImages = [
+      '/images/portfolio.png',
+      '/images/about speech mohiuddin.png',
+      '/images/logo.png',
+    ];
+    let loaded = 0;
+    const total = criticalImages.length;
     let pct = 0;
-    const timer = setInterval(() => {
-      pct = Math.min(100, pct + Math.random() * 18 + 6);
-      setLoadPercent(Math.round(pct));
-      if (pct >= 100) {
-        clearInterval(timer);
-        setTimeout(() => { setLoading(false); window.__hasLoadedOnce = true; }, 350);
+    let timer;
+
+    const finish = () => {
+      clearInterval(timer);
+      setLoadPercent(100);
+      setTimeout(() => { setLoading(false); window.__hasLoadedOnce = true; }, 350);
+    };
+
+    const onImageDone = () => {
+      loaded++;
+    };
+
+    const tick = () => {
+      const target = Math.round((loaded / total) * 100);
+      if (pct < target) {
+        pct = Math.min(target, pct + Math.random() * 10 + 3);
+      } else {
+        pct = Math.min(99, pct + Math.random() * 3 + 1);
       }
-    }, 160);
+      setLoadPercent(Math.round(pct));
+      if (loaded >= total && pct >= 99) finish();
+    };
+
+    timer = setInterval(tick, 120);
+
+    criticalImages.forEach((src) => {
+      const img = new Image();
+      img.onload = onImageDone;
+      img.onerror = onImageDone;
+      img.src = src;
+    });
+
     return () => clearInterval(timer);
   }, []);
 

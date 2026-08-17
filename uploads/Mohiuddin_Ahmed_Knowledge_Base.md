@@ -36,8 +36,7 @@
 
 ## 3. Work Experience
 
-- **AI Solution Developer** — Daffodil Computers PLC (May 2026–Present): Project management, software design, programming.
-- **Intern – Designing & Content** — Daffodil Computers PLC (Jan–Apr 2026): Website management, ODOO (ERP), graphics design, video editing.
+- **AI Solution Developer** — Daffodil Computers PLC (March 2026–August 2026): Project management, software design, programming.
 - **Scriptwriter** — PC Builder Bangladesh (Aug–Oct 2023): Video conceptualization, content research.
 - **Store Manager & Computer Operator** — ShopUp (Aug–Oct 2021): Store & maintenance management, auditing.
 - **Salesperson** — Shwapno (Apr–Jun 2019): Sales management, customer relationship management.
