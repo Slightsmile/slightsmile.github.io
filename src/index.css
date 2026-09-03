@@ -4,6 +4,11 @@ img { content-visibility: auto; }
 
 section[data-screen-label] { content-visibility: auto; contain-intrinsic-size: auto 500px; }
 
+.__logo-img-white { filter: none; }
+[data-theme="light"] .__logo-img-white { filter: invert(1) hue-rotate(180deg); }
+.__logo-img-black { filter: none; }
+:root:not([data-theme="light"]) .__logo-img-black { filter: invert(1) hue-rotate(180deg); }
+
 :root, [data-theme="dark"] {
   --bg: #030712;
   --bg-elevated: #0B1220;
