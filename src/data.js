@@ -9,6 +9,7 @@ export const NAV_ITEMS = [
 export const TYPED_WORDS = ['Full-Stack Developer', 'Data Analyst', 'Machine Learning Enthusiast', 'Designer', 'Tech Explorer'];
 
 export const TIMELINE_DATA = [
+  { type: 'WORK', period: 'Sep 2026 — Present', title: 'Development Analyst', org: 'Work on Slot', desc: 'Software engineering for cryptocurrency and cryptobot systems.' },
   { type: 'WORK', period: 'Feb — Aug 2026', title: 'AI Solution Developer', org: 'Daffodil Computers PLC', desc: 'Project management, software design and programming for AIHR Solution.' },
   { type: 'EDU', period: '2022 — 2026', title: 'BSc, Computer Science & Engineering', org: 'Daffodil International University · GPA 3.54/4.0', desc: 'Research & Innovation Project: 16-model deep-learning ensemble for gallbladder cancer detection.' },
   { type: 'WORK', period: 'Aug — Oct 2023', title: 'Scriptwriter', org: 'PC Builder Bangladesh', desc: 'Video conceptualization and content research for a tech media outlet.' },
@@ -156,7 +157,7 @@ export const GALLERY_ROWS = [
 export const ABOUT_FACTS = [
   { label: 'Education', value: 'BSc CSE, DIU (2022–2026)' },
   { label: 'Based in', value: 'Dhaka, Bangladesh' },
-  { label: 'Current role', value: 'AI Solution Developer' },
+  { label: 'Current role', value: 'Development Analyst' },
   { label: 'Focus', value: 'Healthcare AI · LLMs' },
 ];
 
