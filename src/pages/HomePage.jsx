@@ -284,27 +284,25 @@ export default function HomePage() {
             maskImage: 'linear-gradient(90deg, transparent, black 4%, black 96%, transparent)',
             WebkitMaskImage: 'linear-gradient(90deg, transparent, black 4%, black 96%, transparent)',
           }}>
-          {[...PROJECTS_DATA, ...PROJECTS_DATA].reverse().map((p, i) => (
-            <div key={p.id + '-' + i} className="__project-card" style={{
+          {[...PROJECTS_DATA, ...PROJECTS_DATA].reverse().map((p, i) => {
+            const cardUrl = p.liveUrl || p.githubUrl;
+            return (
+            <div key={p.id + '-' + i} className="__project-card" onClick={() => { if (cardUrl) window.open(cardUrl, '_blank', 'noreferrer'); }} style={{
               background: 'linear-gradient(180deg, var(--surface-strong), var(--surface-soft))',
-              border: '1px solid var(--border)', borderRadius: 16, overflow: 'hidden',
+              border: '1px solid var(--border)', borderRadius: 16, overflow: 'hidden', cursor: cardUrl ? 'pointer' : 'default',
               display: 'flex', flexDirection: 'column', flex: '0 0 260px', width: 260,
               transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
               boxShadow: '0 8px 20px rgba(0,0,0,0.2)',
             }}>
-              <Link to="/projects" draggable={false} style={{ textDecoration: 'none', display: 'block' }}>
-                <div style={{ height: 120, flexShrink: 0, position: 'relative', background: 'repeating-linear-gradient(135deg, rgba(59,130,246,0.06) 0px, rgba(59,130,246,0.06) 2px, transparent 2px, transparent 14px), var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid var(--border-soft)' }}>
-                  {p.logo
-                    ? <img src={p.image} alt={p.title} loading="lazy" decoding="async" draggable={false} className={p.logoInk === 'black' ? '__logo-img-black' : '__logo-img-white'} style={{ width: `${34 * (p.logoZoom || 1)}%`, height: `${34 * (p.logoZoom || 1)}%`, objectFit: 'contain', pointerEvents: 'none' }} />
-                    : <img src={p.image} alt={p.title} loading="lazy" decoding="async" draggable={false} width="260" height="120" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
-                      onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'flex'; }} />}
-                  <span style={{ display: 'none', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: 'var(--text-quaternary)', letterSpacing: '0.04em', textAlign: 'center', padding: '0 14px' }}>{p.title.toUpperCase()} PREVIEW</span>
-                </div>
-              </Link>
+              <div style={{ height: 120, flexShrink: 0, position: 'relative', background: 'repeating-linear-gradient(135deg, rgba(59,130,246,0.06) 0px, rgba(59,130,246,0.06) 2px, transparent 2px, transparent 14px), var(--bg-elevated)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid var(--border-soft)' }}>
+                {p.logo
+                  ? <img src={p.image} alt={p.title} loading="lazy" decoding="async" draggable={false} className={p.logoInk === 'black' ? '__logo-img-black' : '__logo-img-white'} style={{ width: `${34 * (p.logoZoom || 1)}%`, height: `${34 * (p.logoZoom || 1)}%`, objectFit: 'contain', pointerEvents: 'none' }} />
+                  : <img src={p.image} alt={p.title} loading="lazy" decoding="async" draggable={false} width="260" height="120" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }}
+                    onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextSibling.style.display = 'flex'; }} />}
+                <span style={{ display: 'none', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: 'var(--text-quaternary)', letterSpacing: '0.04em', textAlign: 'center', padding: '0 14px' }}>{p.title.toUpperCase()} PREVIEW</span>
+              </div>
               <div style={{ padding: '16px 16px 18px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                <Link to="/projects" style={{ textDecoration: 'none' }}>
-                  <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 15.5, fontWeight: 700, color: 'var(--text-primary)' }}>{p.title}</div>
-                </Link>
+                <div style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 15.5, fontWeight: 700, color: 'var(--text-primary)' }}>{p.title}</div>
                 <p style={{
                   fontSize: 12.5, color: 'var(--text-secondary)', margin: '8px 0 12px', lineHeight: 1.5,
                   display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
@@ -315,12 +313,13 @@ export default function HomePage() {
                   ))}
                 </div>
                 <div style={{ display: 'flex', gap: 12, marginTop: 'auto' }}>
-                  {p.githubUrl && <a href={p.githubUrl} target="_blank" rel="noreferrer" style={{ fontSize: 12, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 700 }}>GitHub <ArrowRight size={11} weight="bold" style={{ transform: 'rotate(-45deg)', display: 'inline', verticalAlign: 'middle' }} /></a>}
-                  {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer" style={{ fontSize: 12, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 700 }}>Live <ArrowRight size={11} weight="bold" style={{ transform: 'rotate(-45deg)', display: 'inline', verticalAlign: 'middle' }} /></a>}
+                  {p.githubUrl && <a href={p.githubUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} style={{ fontSize: 12, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 700 }}>GitHub <ArrowRight size={11} weight="bold" style={{ transform: 'rotate(-45deg)', display: 'inline', verticalAlign: 'middle' }} /></a>}
+                  {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} style={{ fontSize: 12, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 700 }}>Live <ArrowRight size={11} weight="bold" style={{ transform: 'rotate(-45deg)', display: 'inline', verticalAlign: 'middle' }} /></a>}
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

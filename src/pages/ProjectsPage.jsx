@@ -39,8 +39,10 @@ export default function ProjectsPage() {
           const id = 'proj-' + p.id;
           const tilt = tiltMap[p.id] || { rx: 0, ry: 0 };
           const isRevealed = !!revealed[id];
+          const cardUrl = p.liveUrl || p.githubUrl;
           return (
             <div key={p.id} className="__project-card" data-reveal={id} ref={register}
+              onClick={() => { if (cardUrl) window.open(cardUrl, '_blank', 'noreferrer'); }}
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const px = (e.clientX - rect.left) / rect.width - 0.5;
@@ -73,8 +75,8 @@ export default function ProjectsPage() {
                   ))}
                 </div>
                 <div style={{ display: 'flex', gap: 14, marginTop: 'auto' }}>
-                  {p.githubUrl && <a href={p.githubUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 700 }}>GitHub <ArrowRight size={12} weight="bold" style={{ transform: 'rotate(-45deg)', display: 'inline', verticalAlign: 'middle' }} /></a>}
-                  {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 700 }}>Live <ArrowRight size={12} weight="bold" style={{ transform: 'rotate(-45deg)', display: 'inline', verticalAlign: 'middle' }} /></a>}
+                  {p.githubUrl && <a href={p.githubUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} style={{ fontSize: 13, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 700 }}>GitHub <ArrowRight size={12} weight="bold" style={{ transform: 'rotate(-45deg)', display: 'inline', verticalAlign: 'middle' }} /></a>}
+                  {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} style={{ fontSize: 13, color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 700 }}>Live <ArrowRight size={12} weight="bold" style={{ transform: 'rotate(-45deg)', display: 'inline', verticalAlign: 'middle' }} /></a>}
                 </div>
               </div>
             </div>
