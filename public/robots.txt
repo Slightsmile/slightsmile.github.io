@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://akibh987.vercel.app/sitemap.xml
+Sitemap: https://mohi-uddin.dev/sitemap.xml
