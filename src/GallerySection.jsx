@@ -25,7 +25,8 @@ export default function GallerySection({ accent, register, revealed, eyebrow = '
             const items = galleryByType(row.type);
             const id = 'gallery-row-' + row.type;
             const isRevealed = !!revealed[id];
-            const stackItems = items.slice(0, 3);
+            const previewItems = items.filter((g) => g.stack);
+            const stackItems = (previewItems.length ? previewItems : items).slice(0, 3);
             const isEmpty = items.length === 0;
             return (
               <button key={row.type} data-reveal={id} ref={register}

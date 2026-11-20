@@ -114,11 +114,11 @@ export const ACHIEVEMENTS_DATA = [
 export const GITHUB_STATS = [ { value: '24', label: 'Public Repos' }, { value: '8', label: 'Repo Stars' }, { value: '6', label: 'Followers' }, { value: '5+', label: 'GitHub Badges' } ];
 
 export const GALLERY_DATA = [
-  { type: 'certificate', title: 'AI Fluency: Framework and Foundations', org: 'Claude Academy', period: 'November 19, 2026', image: '/images/Certificates/ai-fluency-framework-and-foundations.png' },
+  { type: 'certificate', title: 'AI Fluency: Framework and Foundations', org: 'Claude Academy', period: 'November 19, 2026', image: '/images/Certificates/ai-fluency-framework-and-foundations.png', stack: true },
   { type: 'certificate', title: 'Claude 101', org: 'Claude Academy', period: 'November 16, 2026', image: '/images/Certificates/claude-101.png' },
   { type: 'certificate', title: 'Claude Code 101', org: 'Claude Academy', period: 'November 16, 2026', image: '/images/Certificates/claude-code-101.png' },
-  { type: 'certificate', title: 'Introduction to Model Context Protocol', org: 'Claude Academy', period: 'November 16, 2026', image: '/images/Certificates/claude-model-context-protocol.png' },
-  { type: 'certificate', title: 'AWS Academy Graduate: Cloud Foundations', org: 'AWS Academy', period: 'April 17, 2026', image: '/images/Certificates/aws-academy-cloud-foundations.png' },
+  { type: 'certificate', title: 'Introduction to Model Context Protocol', org: 'Claude Academy', period: 'November 16, 2026', image: '/images/Certificates/claude-model-context-protocol.png', stack: true },
+  { type: 'certificate', title: 'AWS Academy Graduate: Cloud Foundations', org: 'AWS Academy', period: 'April 17, 2026', image: '/images/Certificates/aws-academy-cloud-foundations.png', stack: true },
   { type: 'certificate', title: 'AI+ Prompt Engineer Level 1', org: 'AI CERTs®', period: 'July 18, 2025', image: '/images/Certificates/aicert.jpg' },
   { type: 'certificate', title: 'Craft Effective Prompts for Microsoft 365 Copilot', org: 'Microsoft', period: 'June 13, 2025', image: '/images/Certificates/microsoft-copilot-prompts.png' },
   { type: 'certificate', title: 'Prompt Battle: Prompt Engineering Contest', org: 'Daffodil International University (DIU)', period: 'Summer 2025', image: '/images/Certificates/promptbattle.jpg' },
