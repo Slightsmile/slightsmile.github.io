@@ -283,7 +283,7 @@ export default function Layout() {
       {/* NAVBAR */}
       <div style={{ position: 'fixed', top: navScrolled ? 14 : 22, left: 0, right: 0, zIndex: 100, display: 'flex', justifyContent: 'center', padding: '0 6%', transition: 'top 0.35s ease', pointerEvents: 'none' }}>
         <nav style={{
-          width: '100%', maxWidth: 1300, pointerEvents: 'auto',
+          position: 'relative', width: '100%', maxWidth: 1300, pointerEvents: 'auto',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: navScrolled ? '10px 20px' : '12px 22px',
           background: navScrolled ? 'var(--nav-bg)' : 'transparent',
@@ -294,7 +294,7 @@ export default function Layout() {
           transition: 'all 0.35s ease',
         }}>
           <Link to="/" onClick={handleNavClick('/')} style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 18, color: 'var(--text-primary)', textDecoration: 'none', letterSpacing: '-0.01em' }}>Akib<span style={{ color: 'var(--accent)' }}>.</span></Link>
-          <div className="__desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+          <div className="__desktop-nav" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', alignItems: 'center', gap: 24 }}>
             {NAVBAR_ITEMS.map((link) => {
               const active = isNavActive(link.href);
               return (
