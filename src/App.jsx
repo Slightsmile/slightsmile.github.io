@@ -5,6 +5,7 @@ import Layout from './Layout.jsx';
 const HomePage = lazy(() => import('./pages/HomePage.jsx'));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage.jsx'));
 const ExperiencePage = lazy(() => import('./pages/ExperiencePage.jsx'));
+const LinksPage = lazy(() => import('./pages/LinksPage.jsx'));
 
 const PageFallback = () => (
   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: 'var(--bg)' }}>
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/" element={<Suspense fallback={<PageFallback />}><HomePage /></Suspense>} />
         <Route path="/projects" element={<Suspense fallback={<PageFallback />}><ProjectsPage /></Suspense>} />
         <Route path="/experience" element={<Suspense fallback={<PageFallback />}><ExperiencePage /></Suspense>} />
+        <Route path="/links" element={<Suspense fallback={<PageFallback />}><LinksPage /></Suspense>} />
       </Route>
     </Routes>
   );

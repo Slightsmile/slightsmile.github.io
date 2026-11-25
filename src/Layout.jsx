@@ -21,6 +21,7 @@ function throttle(fn, ms) {
 }
 
 const ACCENT = 'var(--accent)';
+const NAVBAR_ITEMS = NAV_ITEMS.filter((item) => item.href !== '/links');
 
 export default function Layout() {
   const accent = ACCENT;
@@ -294,7 +295,7 @@ export default function Layout() {
         }}>
           <Link to="/" onClick={handleNavClick('/')} style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: 18, color: 'var(--text-primary)', textDecoration: 'none', letterSpacing: '-0.01em' }}>Akib<span style={{ color: 'var(--accent)' }}>.</span></Link>
           <div className="__desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-            {NAV_ITEMS.map((link) => {
+            {NAVBAR_ITEMS.map((link) => {
               const active = isNavActive(link.href);
               return (
                 <Link key={link.href} to={link.href} onClick={handleNavClick(link.href)} style={{
@@ -326,7 +327,7 @@ export default function Layout() {
       {/* MOBILE MENU */}
       {mobileMenuOpen && (
         <div style={{ position: 'fixed', inset: 0, top: 68, zIndex: 99, background: 'var(--overlay-bg)', backdropFilter: 'blur(20px)', padding: '10px 8%' }}>
-          {NAV_ITEMS.map((link) => (
+          {NAVBAR_ITEMS.map((link) => (
             <Link key={link.href} to={link.href} onClick={(e) => { closeMobileMenu(); handleNavClick(link.href)(e); }} style={{ display: 'block', padding: '16px 0', color: 'var(--text-primary)', textDecoration: 'none', fontFamily: "'Space Grotesk',sans-serif", fontSize: 26, fontWeight: 600, borderBottom: '1px solid var(--border-soft)' }}>{link.label}</Link>
           ))}
         </div>
@@ -356,7 +357,7 @@ export default function Layout() {
       <Outlet />
 
       {/* FLOATING SOCIAL DOCK */}
-      <div style={{ position: 'fixed', right: 24, top: '50%', transform: 'translateY(-50%)', zIndex: 90, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 100, padding: '14px 10px', backdropFilter: 'blur(12px)' }}>
+      <div className={location.pathname === '/links' ? '__links-dock' : undefined} style={{ position: 'fixed', right: 24, top: '50%', transform: 'translateY(-50%)', zIndex: 90, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 100, padding: '14px 10px', backdropFilter: 'blur(12px)' }}>
         {DOCK_LINKS.map((d) => (
           <a key={d.label} href={d.href} target="_blank" rel="noreferrer" title={d.label} className="__dock-link" style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', background: 'transparent', color: 'var(--text-secondary)', textDecoration: 'none', cursor: 'pointer', transition: 'background 0.2s ease, color 0.2s ease' }}>
             <Icon name={d.icon} size={16} weight="bold" />

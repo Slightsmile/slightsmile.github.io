@@ -4,6 +4,7 @@ export const NAV_ITEMS = [
   { href: '/experience', label: 'Experience', type: 'route' },
   { href: '/projects', label: 'Projects', type: 'route' },
   { href: '/#skills', label: 'Skills', type: 'anchor' },
+  { href: '/links', label: 'Links', type: 'route' },
 ];
 
 export const TYPED_WORDS = ['Full-Stack Developer', 'Data Analyst', 'Machine Learning Enthusiast', 'Designer', 'Tech Explorer'];
@@ -191,6 +192,7 @@ export const PALETTE_ITEMS = [
   { tag: 'NAV', label: 'Go to Contact', href: '/#contact' },
   { tag: 'NAV', label: 'Go to Projects', href: '/projects' },
   { tag: 'NAV', label: 'Go to Experience', href: '/experience' },
+  { tag: 'NAV', label: 'Go to Links', href: '/links' },
   { tag: 'NAV', label: 'Go to Education', href: '/experience' },
   { tag: 'NAV', label: 'Go to AI Focus', href: '/experience#ai-focus' },
   { tag: 'NAV', label: 'Go to Gallery', href: '/experience#gallery' },
